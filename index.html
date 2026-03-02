@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="es">
 <head>
   <meta charset="utf-8"/>
@@ -783,6 +784,7 @@ async function onSlotClick(e){
   const profile   = td.dataset.profile;
   const day       = td.dataset.day;
   const startSlot = Number(td.dataset.slot);
+if(!armed){ showHint("Selecciona un chip primero"); return; }
   const ok = addBar(profile, day, startSlot, defaultSlots, armed);
   if(ok) await saveWeek("ADD_BAR", `Añadió ${armed} ${profile} ${day} ${slotToTime(startSlot)}`);
 }
@@ -1067,7 +1069,8 @@ async function loadAndListenWeek(weekId){
   unlistenWeek=onSnapshot(weekRef(weekId), snap=>{
     if(!snap.exists())return;
     state=ensureShape(snap.data(),weekId);
-    renderGrid();showMsg("Sincronizado","ok");
+    renderGrid();renderGrid();
+// showMsg("Sincronizado","ok");
   },err=>{showMsg(err.message||"Error realtime.","bad");});
 }
 async function saveWeek(action,summary){
