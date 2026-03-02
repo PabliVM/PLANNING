@@ -931,12 +931,25 @@ durPlus.onclick  = ()=>{ defaultSlots=clamp(defaultSlots+1,1,SLOTS); defDurEl.te
 /* ══════════════════════════════════════════════
    AUTH
 ══════════════════════════════════════════════ */
-authBtnLogin.onclick = async ()=>{
-  authErr.style.display="none";
-  const email=authEmail.value.trim(), pass=authPass.value;
-  if(!email||!pass){authErr.textContent="Falta email o contraseña.";authErr.style.display="block";return;}
-  try{ await signInWithEmailAndPassword(auth, email, pass); }
-  catch(e){ authErr.textContent=e.message||"Error al iniciar sesión."; authErr.style.display="block"; }
+authBtnLogin.onclick = async () => {
+  authErr.style.display = "none";
+  const email = authEmail.value.trim();
+  const pass  = authPass.value;
+
+  if (!email || !pass) {
+    authErr.textContent = "Falta email o contraseña.";
+    authErr.style.display = "block";
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+  } catch (e) {
+    console.log("AUTH ERROR CODE:", e.code);
+    console.log("AUTH ERROR FULL:", e);
+    authErr.textContent = e.code;
+    authErr.style.display = "block";
+  }
 };
 authBtnReset.onclick = async ()=>{
   const email=authEmail.value.trim();
