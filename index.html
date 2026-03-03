@@ -138,7 +138,7 @@ body{font-family:var(--font);background:var(--bg);color:#1a2540;user-select:none
 /* ═══════════════════════════════════════════════════
    SCHEDULE TABLE
 ═══════════════════════════════════════════════════ */
-table.sched{border-collapse:collapse;table-layout:fixed;font-size:10px;}
+table.sched{border-collapse:collapse;table-layout:fixed;font-size:10px;border:3px solid var(--rm-blue-dark);}
 table.sched th,table.sched td{
   border:1px solid #e0e4ec;text-align:center;vertical-align:middle;
   overflow:hidden;white-space:nowrap;
@@ -146,12 +146,12 @@ table.sched th,table.sched td{
 /* Header rows */
 tr.r-season th{background:var(--rm-blue);color:#fff;height:26px;font-size:11px;font-weight:800;text-transform:uppercase;}
 tr.r-daydate th{background:var(--rm-blue-mid);color:#fff;height:22px;font-size:10px;font-weight:700;}
-tr.r-member th{background:var(--rm-blue);color:#fff;height:22px;font-weight:700;font-size:8px;overflow:hidden;white-space:nowrap;text-overflow:clip;}
+tr.r-member th{background:var(--rm-blue);color:#fff;height:24px;font-weight:800;font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:clip;}
 /* Sticky time column */
 td.tc,th.tc{
   width:56px;min-width:56px;max-width:56px;
   background:var(--rm-blue)!important;color:#fff!important;
-  position:sticky;left:0;z-index:15;font-size:9px;font-weight:700;
+  position:sticky;left:0;z-index:15;font-size:11px;font-weight:700;
   border-right:2px solid var(--rm-gold)!important;
 }
 th.tc-logo{
@@ -972,7 +972,7 @@ function cellY(wrap, season, slotIdx, isTipo) {
     html += `<tr class="r-member">`;
     for (let d = 0; d < dayCount; d++) {
       members.forEach(m => {
-        html += `<th style="width:${COL_W}px;min-width:${COL_W}px;max-width:${COL_W}px;font-size:8px;padding:0 1px;overflow:hidden;white-space:nowrap;">${m.initials}</th>`;
+        html += `<th style="width:${COL_W}px;min-width:${COL_W}px;max-width:${COL_W}px;font-size:11px;padding:0 1px;overflow:hidden;white-space:nowrap;">${m.initials}</th>`;
       });
       if (d < dayCount-1) html += `<th class="sep"></th>`;
     }
