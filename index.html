@@ -242,12 +242,6 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   font-size:14px;color:rgba(255,255,255,.9);pointer-events:none;
 }
 
-/* ═══════════════════════════════════════════════════
-   COPY/PASTE STATE
-═══════════════════════════════════════════════════ */
-.sched-block.copied,.event-overlay.copied{
-  outline:2px dashed var(--rm-gold);outline-offset:2px;
-}
 
 /* ═══════════════════════════════════════════════════
    MODAL
@@ -341,7 +335,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <select id="auth-role-select">
       <option value="OWNER">Owner (Administrador)</option>
       <option value="EDITOR">Editor</option>
-      <option value="VIEWER">Viewer (Solo lectura)</option>
+      
     </select>
     <label>PIN</label>
     <input type="password" id="auth-pin" placeholder="Introduce PIN..." maxlength="8"/>
@@ -391,8 +385,9 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     
     
     <div class="toolbar-sep"></div>
-    <button class="topbar-btn" id="btn-copy" onclick="Clipboard.copy()" style="background:#8e44ad;color:#fff;">⎘ Copiar</button>
-    <button class="topbar-btn" id="btn-paste" onclick="Clipboard.paste()" style="background:#16a085;color:#fff;" disabled>⎘ Pegar</button>
+
+
+
     <div class="toolbar-sep"></div>
     <button class="topbar-btn red" id="btn-clear-week" onclick="WeekMgr.clear()">🗑 Limpiar</button>
     <button class="topbar-btn red" id="btn-del-week" onclick="WeekMgr.delete_()">× Eliminar</button>
@@ -411,8 +406,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <div class="chip chip-event" draggable="true" data-type="event" ondragstart="DragDrop.paletteStart(event)">Evento</div>
     
   </div>
-  
-  <div class="grid-outer" id="grid-week-outer" onmousemove="Clipboard.trackMouse(event)">
+  <div class="grid-outer" id="grid-week-outer">
     <div id="sched-wrap"></div>
   </div>
 </div>
@@ -517,7 +511,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <select id="modal-user-role">
       <option value="OWNER">Owner</option>
       <option value="EDITOR">Editor</option>
-      <option value="VIEWER">Viewer</option>
+      
     </select>
     <label>PIN (4–8 dígitos)</label>
     <input type="password" id="modal-user-pin" maxlength="8"/>
@@ -588,7 +582,7 @@ const DEFAULT_MEMBERS = [
     showWeekend: boolean
   }
 
-  User = { id, name, role:"OWNER"|"EDITOR"|"VIEWER", pinHash:string }
+  User = { id, name, role:"OWNER"|"EDITOR"|, pinHash:string }
 
   Season = {
     id, name, startYear,
@@ -636,7 +630,7 @@ const State = (() => {
       users: [
         { id:_uid(), name:"Owner", role:"OWNER",   pinHash: _hash("1234") },
         { id:_uid(), name:"Editor",role:"EDITOR",  pinHash: _hash("5678") },
-        { id:_uid(), name:"Viewer",role:"VIEWER",  pinHash: _hash("0000") },
+       
       ],
       seasons: [{
         id: sid, name:"Temporada 25/26", startYear:2025,
@@ -737,7 +731,7 @@ const Auth = (() => {
   function role() { return _role; }
   function isOwner()  { return _role === "OWNER"; }
   function isEditor() { return _role === "EDITOR"; }
-  function isViewer() { return _role === "VIEWER"; }
+ 
   function canEdit()  { return _role === "OWNER" || _role === "EDITOR"; }
 
   // EDITOR can only edit the current ISO week
@@ -761,7 +755,7 @@ const Auth = (() => {
     return false;
   }
 
-  return { login, logout, role, isOwner, isEditor, isViewer, canEdit, editorCanEditCurrentWeek, restore };
+  return { login, logout, role, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, restore };
 })();
 
 // ╔══════════════════════════════════════════════════════════════════════════
@@ -1599,79 +1593,7 @@ const TipoMgr = (() => {
   return { clear };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  CLIPBOARD (copy/paste)
-// ╚══════════════════════════════════════════════════════════════════════════
-const Clipboard = (() => {
-  let _copied = null;
-  // Track last cell the mouse hovered over in the week grid
-  let _hoverDay  = null;
-  let _hoverSlot = null;
 
-  function trackMouse(e) {
-    const cell = e.target.closest("td.slot");
-    if (cell) {
-      _hoverDay  = parseInt(cell.dataset.d);
-      _hoverSlot = parseInt(cell.dataset.s);
-    }
-  }
-
-  function copy() {
-    const week   = State.currentWeek();
-    const season = State.currentSeason();
-    if (!week) return;
-    _copied = {
-      blocks: week.blocks.map(b => ({...b})),
-      events: (season.events || []).filter(e => e.weekId === week.id).map(e => ({...e}))
-    };
-    document.getElementById("btn-paste").disabled = false;
-    const btn = document.getElementById("btn-copy");
-    btn.textContent = "✓ Copiado"; setTimeout(() => btn.textContent = "⎘ Copiar", 1500);
-  }
-
-  function paste() {
-    if (!_copied || !Auth.canEdit()) return;
-    if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) return;
-    const week   = State.currentWeek();
-    const season = State.currentSeason();
-    if (!week) return;
-
-    // If cursor is over a cell, offset blocks relative to that position
-    if (_hoverDay !== null && _hoverSlot !== null && _copied.blocks.length > 0) {
-      // Find the min day and slot of copied blocks to compute offset
-      const minDay  = Math.min(..._copied.blocks.map(b => b.dayIdx));
-      const minSlot = Math.min(..._copied.blocks.map(b => b.fromSlot));
-      const dDay    = _hoverDay  - minDay;
-      const dSlot   = _hoverSlot - minSlot;
-      const dayCount = Grid.activeDayCount();
-
-      const newBlocks = _copied.blocks.map(b => {
-        const newDay  = Math.max(0, Math.min(b.dayIdx  + dDay,  dayCount - 1));
-        const newFrom = Math.max(0, Math.min(b.fromSlot + dSlot, SLOTS.length - 1));
-        const dur     = b.toSlot - b.fromSlot;
-        return {...b, id: State._uid(), dayIdx: newDay, fromSlot: newFrom, toSlot: Math.min(newFrom + dur, SLOTS.length)};
-      });
-      const newEvents = _copied.events.map(e => {
-        const newDay  = Math.max(0, Math.min(e.startDay + dDay, dayCount - 1));
-        const newFrom = Math.max(0, Math.min(e.startSlot + dSlot, SLOTS.length - 1));
-        const dur     = e.endSlot - e.startSlot;
-        return {...e, id: State._uid(), weekId: week.id,
-          startDay: newDay, endDay: newDay,
-          startSlot: newFrom, endSlot: Math.min(newFrom + dur, SLOTS.length)};
-      });
-      week.blocks.push(...newBlocks);
-      season.events.push(...newEvents);
-    } else {
-      // No cursor position — paste as-is
-      week.blocks.push(..._copied.blocks.map(b => ({...b, id: State._uid()})));
-      season.events.push(..._copied.events.map(e => ({...e, id: State._uid(), weekId: week.id})));
-    }
-    State.save();
-    App.renderWeek();
-  }
-
-  return { copy, paste, trackMouse };
-})();
 
 // ╔══════════════════════════════════════════════════════════════════════════
 // ║  EXPORTER
@@ -1938,7 +1860,7 @@ const Settings = (() => {
     const u = State.get().users.find(u=>u.id===id);
     document.getElementById("modal-user-title").textContent="Editar usuario";
     document.getElementById("modal-user-name").value = u?.name||"";
-    document.getElementById("modal-user-role").value = u?.role||"VIEWER";
+    document.getElementById("modal-user-role").value = u?.role || "EDITOR";
     document.getElementById("modal-user-pin").value = "";
     Modal.open("modal-user");
   }
@@ -2048,7 +1970,7 @@ const App = (() => {
     // Tipo button: not week-dependent, just needs canEdit
     const _btnCT = document.getElementById("btn-clear-tipo");
     if (_btnCT) _btnCT.disabled = !canE;
-    // Hide tabs: EDITOR and VIEWER only see Semana tab
+    // Hide tabs: EDITOR only see Semana tab
     document.getElementById("tab-btn-tipo").style.display     = owner ? "" : "none";
     document.getElementById("tab-btn-settings").style.display = owner ? "" : "none";
     // Force to week tab if non-owner
