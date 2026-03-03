@@ -14,7 +14,7 @@
   --rm-gold:#c9a227; --rm-gold-light:#e8c040;
   --bg:#e8eef6; --surface:#fff; --border:#c8d4e8;
   --row-h:22px; --col-w:30px; --time-w:56px; --sep-w:6px;
-  --slot-count:25; /* 08:30..20:30 */
+  --slot-count:27; /* 08:00..21:00 */
   --font:'Segoe UI',Arial,sans-serif;
   --shadow:0 2px 8px rgba(0,0,0,.18);
 }
@@ -242,7 +242,6 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   font-size:14px;color:rgba(255,255,255,.9);pointer-events:none;
 }
 
-
 /* ═══════════════════════════════════════════════════
    MODAL
 ═══════════════════════════════════════════════════ */
@@ -308,7 +307,6 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   padding:6px;font-size:11px;font-weight:700;z-index:100;border-radius:3px;
 }
 
-/* ═══ PRINT / PDF EXPORT ═══ */
 @media print {
   body > *:not(#print-frame) { display:none !important; }
   #print-frame {
@@ -336,7 +334,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <select id="auth-role-select">
       <option value="OWNER">Owner (Administrador)</option>
       <option value="EDITOR">Editor</option>
-      
+
     </select>
     <label>PIN</label>
     <input type="password" id="auth-pin" placeholder="Introduce PIN..." maxlength="8"/>
@@ -384,11 +382,8 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   <div class="toolbar">
     <button class="topbar-btn blue" id="btn-new-week" onclick="WeekMgr.openNew()">＋ Semana</button>
     <button class="topbar-btn ghost" id="btn-load-tipo" onclick="WeekMgr.loadTipo()">📋 Cargar tipo</button>
-    
-    
+
     <div class="toolbar-sep"></div>
-
-
 
     <div class="toolbar-sep"></div>
     <button class="topbar-btn red" id="btn-clear-week" onclick="WeekMgr.clear()">🗑 Limpiar</button>
@@ -406,7 +401,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <div class="chip chip-absent" draggable="true" data-type="absent" ondragstart="DragDrop.paletteStart(event)">Ausente</div>
     <div class="chip chip-external" draggable="true" data-type="external" ondragstart="DragDrop.paletteStart(event)">Trabajo externo</div>
     <div class="chip chip-event" draggable="true" data-type="event" ondragstart="DragDrop.paletteStart(event)">Evento</div>
-    
+
   </div>
   <div class="grid-outer" id="grid-week-outer">
     <div id="sched-wrap"></div>
@@ -513,7 +508,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <select id="modal-user-role">
       <option value="OWNER">Owner</option>
       <option value="EDITOR">Editor</option>
-      
+
     </select>
     <label>PIN (4–8 dígitos)</label>
     <input type="password" id="modal-user-pin" maxlength="8"/>
@@ -525,26 +520,20 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 </div>
 
 <script>
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  CONSTANTS
-// ╚══════════════════════════════════════════════════════════════════════════
 
 const LOGO = "./assets/rm.png";
 
-
-
-
-// Time slots: 08:30 → 20:30 inclusive (25 slots × 30min)
+// Time slots: 08:00 → 21:00 inclusive (27 slots × 30min)
 const SLOTS = (() => {
   const s = [];
-  const start = new Date("2000-01-01T08:30:00");
-  for (let i = 0; i < 25; i++) {
+  const start = new Date("2000-01-01T08:00:00");
+  for (let i = 0; i < 27; i++) {
     const d = new Date(start.getTime() + i * 30 * 60000);
     const hh = String(d.getHours()).padStart(2, "0");
     const mm = String(d.getMinutes()).padStart(2, "0");
     s.push(`${hh}:${mm}`);
   }
-  return s; // 25 entries: 08:30..20:30
+  return s; // 27 entries: 08:00..21:00
 })();
 
 const DAY_NAMES  = ["LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","DOMINGO"];
@@ -577,9 +566,6 @@ const DEFAULT_MEMBERS = [
   {id:"m_JJV", initials:"JJV", name:"JJV", group:"rend",    order:14, joinDate:"2025-07-01"},
 ];
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  DATA MODEL
-// ╚══════════════════════════════════════════════════════════════════════════
 /*
   AppState = {
     users: User[],
@@ -625,9 +611,6 @@ const DEFAULT_MEMBERS = [
   }
 */
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  STATE
-// ╚══════════════════════════════════════════════════════════════════════════
 const State = (() => {
   const KEY = "rm_app_v1";
 
@@ -637,7 +620,7 @@ const State = (() => {
       users: [
         { id:_uid(), name:"Owner", role:"OWNER",   pinHash: _hash("1234") },
         { id:_uid(), name:"Editor",role:"EDITOR",  pinHash: _hash("5678") },
-       
+
       ],
       seasons: [{
         id: sid, name:"Temporada 25/26", startYear:2025,
@@ -704,9 +687,6 @@ const State = (() => {
   return { load, save, get, checkPin, currentSeason, currentWeek, currentISOMonday, _uid, _hash };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  AUTH
-// ╚══════════════════════════════════════════════════════════════════════════
 const Auth = (() => {
   let _role = null;
 
@@ -738,7 +718,7 @@ const Auth = (() => {
   function role() { return _role; }
   function isOwner()  { return _role === "OWNER"; }
   function isEditor() { return _role === "EDITOR"; }
- 
+
   function canEdit()  { return _role === "OWNER" || _role === "EDITOR"; }
 
   // EDITOR can only edit the current ISO week
@@ -765,9 +745,6 @@ const Auth = (() => {
   return { login, logout, role, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, restore };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  MODAL
-// ╚══════════════════════════════════════════════════════════════════════════
 const Modal = (() => {
   let _pending = null; // {type, memberId, dayIdx, fromSlot, context, isTeam}
 
@@ -836,9 +813,6 @@ const Modal = (() => {
   return { open, close, openBlock, confirmBlock, setPending, getPending };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  GRID RENDERER
-// ╚══════════════════════════════════════════════════════════════════════════
 const Grid = (() => {
   let _showWeekend = false;
 
@@ -1217,9 +1191,6 @@ function cellY(wrap, season, slotIdx, isTipo) {
            groupColor, weekDates, fmtDate, deleteBlock, deleteEvent, typeLabel };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  DRAG & DROP (palette → cell)
-// ╚══════════════════════════════════════════════════════════════════════════
 const DragDrop = (() => {
   let _chipType = null;
   let _chipCtx  = null; // "week" or "tipo"
@@ -1334,9 +1305,6 @@ const DragDrop = (() => {
   return { paletteStart, over, leave, drop, finalize };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  RESIZE BLOCK
-// ╚══════════════════════════════════════════════════════════════════════════
 const Resize = (() => {
   function start(e, block, div, wrap, isTipo) {
     e.preventDefault(); e.stopPropagation();
@@ -1386,9 +1354,6 @@ const Resize = (() => {
   return { start, startTouch };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  MOVE BLOCK (drag existing block)
-// ╚══════════════════════════════════════════════════════════════════════════
 const MoveBlock = (() => {
   function start(e, block, div, wrap, isTipo, week, season) {
     e.preventDefault();
@@ -1429,9 +1394,6 @@ const MoveBlock = (() => {
   return { start };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  MOVE EVENT
-// ╚══════════════════════════════════════════════════════════════════════════
 const MoveEvent = (() => {
   function start(e, ev, div, wrap, season, week) {
     e.preventDefault();
@@ -1476,9 +1438,6 @@ const MoveEvent = (() => {
   return { start };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  EVENT RESIZE
-// ╚══════════════════════════════════════════════════════════════════════════
 const EventResize = (() => {
   function start(e, ev, day, div, wrap, season, week) {
     e.preventDefault(); e.stopPropagation();
@@ -1509,9 +1468,6 @@ const EventResize = (() => {
   return { start };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  WEEK MANAGER
-// ╚══════════════════════════════════════════════════════════════════════════
 const WeekMgr = (() => {
   function openNew() {
     // Default to next Monday
@@ -1628,13 +1584,10 @@ const WeekMgr = (() => {
 })();
 // WeekMgr.delete_ is exposed via the onclick directly
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  TIPO MANAGER
-// ╚══════════════════════════════════════════════════════════════════════════
 const TipoMgr = (() => {
   function clear() {
     const season = State.currentSeason();
-    
+
     season.tipoBlocks = [];
     State.save();
     App.renderTipo();
@@ -1642,11 +1595,6 @@ const TipoMgr = (() => {
   return { clear };
 })();
 
-
-
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  EXPORTER
-// ╚══════════════════════════════════════════════════════════════════════════
 const Exporter = (() => {
   async function exportPDF() {
     const wrap = document.getElementById("sched-wrap");
@@ -1733,9 +1681,6 @@ const Exporter = (() => {
   return { exportPDF };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  SETTINGS
-// ╚══════════════════════════════════════════════════════════════════════════
 const Settings = (() => {
   let _editUserId = null;
 
@@ -1994,9 +1939,6 @@ const Settings = (() => {
            openNewUser, openEditUser, saveUser, deleteUser, save };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  APP (orchestrator)
-// ╚══════════════════════════════════════════════════════════════════════════
 const App = (() => {
   function init() {
     const s = State.get();
@@ -2141,9 +2083,6 @@ const App = (() => {
   return { init, selectSeason, selectWeek, renderSeasonSelect, renderWeekSelect, renderWeek, renderTipo, showTab };
 })();
 
-// ╔══════════════════════════════════════════════════════════════════════════
-// ║  BOOTSTRAP
-// ╚══════════════════════════════════════════════════════════════════════════
 window.addEventListener("DOMContentLoaded", () => {
   State.load();
   // Set logos immediately
