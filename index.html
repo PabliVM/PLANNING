@@ -327,7 +327,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
      AUTH SCREEN
 ══════════════════════════════════════════════ -->
 <div id="auth-screen">
-  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjMDA0Nzk1Ii8+PHRleHQgeD0iMTAwIiB5PSI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjY0IiBmaWxsPSIjYzlhMjI3Ij5STTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjE0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSI+Q0xVQjwvdGV4dD48L3N2Zz4=" alt="RM"/>
+  <img src="./assets/rm.png" alt="RM"/>
 
   <h1>Horarios · Real Madrid</h1>
   <p>Dpto. Formación y Metodología</p>
@@ -349,7 +349,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
      TOPBAR
 ══════════════════════════════════════════════ -->
 <div class="topbar" id="main-ui" style="display:none;">
-  <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjMDA0Nzk1Ii8+PHRleHQgeD0iMTAwIiB5PSI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjY0IiBmaWxsPSIjYzlhMjI3Ij5STTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjE0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSI+Q0xVQjwvdGV4dD48L3N2Zz4=" alt="RM"/>
+  <img class="logo" src="./assets/rm.png" alt="RM"/>
   <div class="topbar-title">
     <h1 id="h-season-name">HORARIOS – TEMPORADA 25/26</h1>
     <span>Real Madrid · Dpto. Formación y Metodología</span>
@@ -528,7 +528,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 // ║  CONSTANTS
 // ╚══════════════════════════════════════════════════════════════════════════
 
-const LOGO = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjMDA0Nzk1Ii8+PHRleHQgeD0iMTAwIiB5PSI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjY0IiBmaWxsPSIjYzlhMjI3Ij5STTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjE0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSI+Q0xVQjwvdGV4dD48L3N2Zz4=";
+const LOGO = "./assets/rm.png";
 
 
 
@@ -2127,7 +2127,7 @@ const App = (() => {
 window.addEventListener("DOMContentLoaded", () => {
   State.load();
   // Set logos immediately
-  document.querySelectorAll('img[src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgcng9IjIwIiBmaWxsPSIjMDA0Nzk1Ii8+PHRleHQgeD0iMTAwIiB5PSI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjY0IiBmaWxsPSIjYzlhMjI3Ij5STTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjE0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSI+Q0xVQjwvdGV4dD48L3N2Zz4="]').forEach(img => { img.src = LOGO; });
+  document.querySelectorAll('img[src="./assets/rm.png"]').forEach(img => { img.src = LOGO; });
 
   // Restore session if exists
   if (Auth.restore()) {
