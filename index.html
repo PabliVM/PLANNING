@@ -18,9 +18,7 @@
 html,body{height:100%;font-family:var(--font);background:var(--bg);color:#1a2540;overflow:hidden;}
 body{display:flex;flex-direction:column;}
 
-/* ═══════════════════════════════════════════════════
-   AUTH SCREEN
-═══════════════════════════════════════════════════ */
+/* AUTH SCREEN */
 #auth-screen{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   height:100%;background:linear-gradient(135deg,var(--rm-blue-dark),var(--rm-blue));color:#fff;
@@ -40,10 +38,9 @@ body{display:flex;flex-direction:column;}
 }
 .auth-btn:hover{background:var(--rm-gold-light);}
 .auth-error{display:none;color:#ff6b6b;font-size:11px;margin-top:8px;text-align:center;}
+.auth-loading{display:none;color:rgba(255,255,255,.7);font-size:11px;margin-top:8px;text-align:center;}
 
-/* ═══════════════════════════════════════════════════
-   TOPBAR
-═══════════════════════════════════════════════════ */
+/* TOPBAR */
 .topbar{
   display:flex;align-items:center;gap:10px;
   padding:6px 14px;background:var(--rm-blue);color:#fff;flex-shrink:0;
@@ -77,9 +74,7 @@ body{display:flex;flex-direction:column;}
 .topbar-btn.ghost:hover{background:rgba(255,255,255,.28);}
 .topbar-btn:disabled{opacity:.4;cursor:not-allowed;}
 
-/* ═══════════════════════════════════════════════════
-   TABS
-═══════════════════════════════════════════════════ */
+/* TABS */
 .tabs{display:flex;gap:2px;padding:5px 14px 0;background:var(--rm-blue-mid);flex-shrink:0;z-index:199;}
 .tab{padding:5px 14px;cursor:pointer;border-radius:5px 5px 0 0;font-size:11px;font-weight:700;
   background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);}
@@ -87,15 +82,11 @@ body{display:flex;flex-direction:column;}
 .tab:hover:not(.active){background:rgba(255,255,255,.22);}
 .tab.disabled{opacity:.4;cursor:not-allowed;}
 
-/* ═══════════════════════════════════════════════════
-   PANELS
-═══════════════════════════════════════════════════ */
+/* PANELS */
 .panel{display:none;flex:1;overflow:hidden;flex-direction:column;}
 .panel.active{display:flex;}
 
-/* ═══════════════════════════════════════════════════
-   TOOLBAR (below tabs)
-═══════════════════════════════════════════════════ */
+/* TOOLBAR */
 .toolbar{
   display:flex;align-items:center;gap:6px;padding:5px 14px;flex-wrap:wrap;
   background:#fff;border-bottom:2px solid var(--border);flex-shrink:0;
@@ -103,9 +94,7 @@ body{display:flex;flex-direction:column;}
 .toolbar-label{font-size:11px;font-weight:700;color:var(--rm-blue);margin-right:4px;}
 .toolbar-sep{width:1px;height:20px;background:var(--border);margin:0 4px;}
 
-/* ═══════════════════════════════════════════════════
-   PALETTE (drag chips)
-═══════════════════════════════════════════════════ */
+/* PALETTE */
 .palette{
   display:flex;align-items:center;gap:6px;padding:4px 14px;
   background:#f5f8fc;border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;
@@ -124,34 +113,26 @@ body{display:flex;flex-direction:column;}
 .chip.disabled{opacity:.35;cursor:not-allowed;}
 .readonly-notice{font-size:10px;color:#e74c3c;font-weight:700;padding:2px 8px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;}
 
-/* ═══════════════════════════════════════════════════
-   LEGEND
-═══════════════════════════════════════════════════ */
+/* LEGEND */
 .legend{display:flex;gap:8px;align-items:center;padding:3px 14px;flex-wrap:wrap;
   font-size:10px;background:#f5f8fc;border-bottom:1px solid var(--border);flex-shrink:0;}
 .leg-item{display:flex;align-items:center;gap:3px;}
 .leg-sw{width:12px;height:8px;border-radius:2px;border:1px solid rgba(0,0,0,.15);}
 .legend-hint{color:#aaa;margin-left:8px;}
 
-/* ═══════════════════════════════════════════════════
-   GRID AREA
-═══════════════════════════════════════════════════ */
+/* GRID AREA */
 .grid-outer{flex:1;overflow:auto;position:relative;}
 #sched-wrap,#tipo-wrap{position:relative;display:inline-block;}
 
-/* ═══════════════════════════════════════════════════
-   SCHEDULE TABLE
-═══════════════════════════════════════════════════ */
+/* SCHEDULE TABLE */
 table.sched{border-collapse:collapse;table-layout:fixed;font-size:10px;border:3px solid var(--rm-blue-dark);}
 table.sched th,table.sched td{
   border:1px solid #e0e4ec;text-align:center;vertical-align:middle;
   overflow:hidden;white-space:nowrap;
 }
-/* Header rows */
 tr.r-season th{background:var(--rm-blue);color:#fff;height:38px;font-size:16px;font-weight:800;text-transform:uppercase;}
 tr.r-daydate th{background:var(--rm-blue-mid);color:#fff;height:33px;font-size:15px;font-weight:700;}
 tr.r-member th{background:var(--rm-blue);color:#fff;height:24px;font-weight:800;font-size:11px;overflow:hidden;white-space:nowrap;text-overflow:clip;}
-/* Sticky time column */
 td.tc,th.tc{
   width:56px;min-width:56px;max-width:56px;
   background:var(--rm-blue)!important;color:#fff!important;
@@ -164,21 +145,16 @@ th.tc-logo{
   padding:3px;border-right:2px solid var(--rm-blue-dark)!important;
 }
 th.tc-logo img{width:44px;height:44px;min-width:44px;min-height:44px;object-fit:contain;display:block;margin:0 auto;}
-/* Separator column */
 td.sep,th.sep{width:var(--sep-w);min-width:var(--sep-w);max-width:var(--sep-w);background:var(--rm-blue)!important;border:none!important;padding:0;box-shadow:inset 0 0 0 10px var(--rm-blue);}
-/* Data cells */
 td.slot{
   width:var(--col-w);min-width:var(--col-w);max-width:var(--col-w);
   height:var(--row-h);background:#fff;position:relative;cursor:default;
 }
 tr:nth-child(even) td.slot{background:#f5f8fc;}
 tr.half-hour td{border-top:1px solid #d0d6e2;}
-/* Drop hover */
 td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var(--rm-blue);}
 
-/* ═══════════════════════════════════════════════════
-   BLOCKS
-═══════════════════════════════════════════════════ */
+/* BLOCKS */
 .sched-block{
   position:absolute;left:1px;right:1px;
   border-radius:3px;z-index:10;overflow:hidden;
@@ -195,7 +171,6 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   font-size:8px;font-weight:700;color:#fff;
   text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
 }
-/* External work: vertical text */
 .block-external .block-label{
   writing-mode:vertical-rl;transform:rotate(180deg);
   font-size:16px;letter-spacing:.3px;white-space:nowrap;
@@ -212,9 +187,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 }
 .block-del:hover{color:#fff;}
 
-/* ═══════════════════════════════════════════════════
-   EVENT OVERLAYS (team events span all members)
-═══════════════════════════════════════════════════ */
+/* EVENT OVERLAYS */
 .event-overlay{
   position:absolute;z-index:30;
   border-radius:3px;overflow:hidden;
@@ -240,15 +213,12 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   cursor:pointer;z-index:21;
 }
 .event-del:hover{color:#fff;}
-/* Continuation indicator */
 .event-continues{
   position:absolute;right:2px;top:50%;transform:translateY(-50%);
   font-size:14px;color:rgba(255,255,255,.9);pointer-events:none;
 }
 
-/* ═══════════════════════════════════════════════════
-   MODAL
-═══════════════════════════════════════════════════ */
+/* MODAL */
 .modal-overlay{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.55);z-index:500;
@@ -277,9 +247,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 .modal-btn.danger:hover{background:#a93226;}
 .modal-btn.secondary{background:#e0e6f0;color:#1a2540;}
 
-/* ═══════════════════════════════════════════════════
-   SETTINGS PANEL
-═══════════════════════════════════════════════════ */
+/* SETTINGS PANEL */
 .settings-panel{padding:16px;overflow-y:auto;flex:1;}
 .settings-panel h2{color:var(--rm-blue);margin-bottom:14px;font-size:14px;font-weight:800;}
 .settings-section{margin-bottom:20px;}
@@ -302,14 +270,18 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 .group-grid{display:flex;flex-wrap:wrap;gap:8px;}
 .group-card{background:#fff;border:1px solid var(--border);border-radius:5px;padding:8px 12px;display:flex;align-items:center;gap:8px;}
 
-/* ═══════════════════════════════════════════════════
-   WEEK EDITOR LOCK OVERLAY
-═══════════════════════════════════════════════════ */
 .editor-lock-notice{
   display:none;position:absolute;top:0;left:0;right:0;
   background:rgba(231,76,60,.9);color:#fff;text-align:center;
   padding:6px;font-size:11px;font-weight:700;z-index:100;border-radius:3px;
 }
+
+/* Sync indicator */
+.sync-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+.sync-dot.online{background:#27ae60;}
+.sync-dot.offline{background:#e74c3c;}
+.sync-dot.saving{background:#f39c12;animation:pulse .6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 
 @media print {
   body > *:not(#print-frame) { display:none !important; }
@@ -325,31 +297,23 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     AUTH SCREEN
-══════════════════════════════════════════════ -->
+<!-- AUTH SCREEN -->
 <div id="auth-screen">
   <img src="./assets/rm.png" alt="RM"/>
-
   <h1>Horarios · Real Madrid</h1>
   <p>Dpto. Formación y Metodología</p>
   <div class="auth-box">
-    <label>Perfil</label>
-    <select id="auth-role-select">
-      <option value="OWNER">Owner (Administrador)</option>
-      <option value="EDITOR">Editor</option>
-
-    </select>
-    <label>PIN</label>
-    <input type="password" id="auth-pin" placeholder="Introduce PIN..." maxlength="8"/>
-    <button class="auth-btn" onclick="Auth.login()">Entrar</button>
-    <div class="auth-error" id="auth-error">PIN incorrecto</div>
+    <label>Email</label>
+    <input type="email" id="auth-email" placeholder="usuario@realmadrid.es" autocomplete="email"/>
+    <label>Contraseña</label>
+    <input type="password" id="auth-pass" placeholder="••••••••" autocomplete="current-password"/>
+    <button class="auth-btn" id="auth-btn" onclick="Auth.login()">Entrar</button>
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-loading" id="auth-loading">Conectando...</div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     TOPBAR
-══════════════════════════════════════════════ -->
+<!-- TOPBAR -->
 <div class="topbar" id="main-ui" style="display:none;">
   <img class="logo" src="./assets/rm.png" alt="RM"/>
   <div class="topbar-title">
@@ -357,6 +321,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <span>Real Madrid · Dpto. Formación y Metodología</span>
   </div>
   <div class="topbar-controls">
+    <span id="sync-indicator" title="Estado de sincronización"><span class="sync-dot online"></span></span>
     <select class="rm-select" id="season-select" onchange="App.selectSeason(this.value)" style="min-width:110px;"></select>
     <button class="topbar-btn gold" id="btn-new-season" onclick="Modal.open('modal-season')" title="Nueva temporada">＋ Temp.</button>
     <select class="rm-select" id="week-select" onchange="App.selectWeek(this.value)" style="min-width:130px;"></select>
@@ -366,29 +331,24 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     </label>
     <div class="toolbar-sep"></div>
     <span class="role-badge" id="role-badge">OWNER</span>
+    <span id="user-email-display" style="font-size:9px;opacity:.7;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
     <button class="topbar-btn ghost" onclick="Auth.logout()">⬡ Salir</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     TABS
-══════════════════════════════════════════════ -->
+<!-- TABS -->
 <div class="tabs" id="main-tabs" style="display:none;">
   <div class="tab active" id="tab-btn-week" onclick="App.showTab('week')">📅 Semana</div>
   <div class="tab" id="tab-btn-tipo" onclick="App.showTab('tipo')">📋 Tipo</div>
   <div class="tab" id="tab-btn-settings" onclick="App.showTab('settings')">⚙ Config</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PANEL: SEMANA
-══════════════════════════════════════════════ -->
+<!-- PANEL: SEMANA -->
 <div class="panel active" id="panel-week">
   <div class="toolbar">
     <button class="topbar-btn blue" id="btn-new-week" onclick="WeekMgr.openNew()">＋ Semana</button>
     <button class="topbar-btn ghost" id="btn-load-tipo" onclick="WeekMgr.loadTipo()">📋 Cargar tipo</button>
-
     <div class="toolbar-sep"></div>
-
     <div class="toolbar-sep"></div>
     <button class="topbar-btn red" id="btn-clear-week" onclick="WeekMgr.clear()">🗑 Limpiar</button>
     <button class="topbar-btn red" id="btn-del-week" onclick="WeekMgr.delete_()">× Eliminar</button>
@@ -405,16 +365,13 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <div class="chip chip-absent" draggable="true" data-type="absent" ondragstart="DragDrop.paletteStart(event)">Ausente</div>
     <div class="chip chip-external" draggable="true" data-type="external" ondragstart="DragDrop.paletteStart(event)">Trabajo externo</div>
     <div class="chip chip-event" draggable="true" data-type="event" ondragstart="DragDrop.paletteStart(event)">Evento</div>
-
   </div>
   <div class="grid-outer" id="grid-week-outer">
     <div id="sched-wrap"></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PANEL: TIPO
-══════════════════════════════════════════════ -->
+<!-- PANEL: TIPO -->
 <div class="panel" id="panel-tipo">
   <div class="toolbar">
     <span class="toolbar-label">Horario Tipo – base para nuevas semanas</span>
@@ -434,16 +391,12 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PANEL: SETTINGS
-══════════════════════════════════════════════ -->
+<!-- PANEL: SETTINGS -->
 <div class="panel" id="panel-settings">
   <div class="settings-panel" id="settings-content"></div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MODALS
-══════════════════════════════════════════════ -->
+<!-- MODALS -->
 <!-- Block name modal -->
 <div class="modal-overlay" id="modal-block">
   <div class="modal">
@@ -451,21 +404,12 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <label>Texto del bloque</label>
     <textarea id="modal-block-text" rows="2" placeholder="Nombre del evento (Enter = 2ª línea, Ctrl+Enter = OK)" style="resize:vertical;min-height:52px;"></textarea>
     <div id="modal-event-extras" style="display:none;">
-      <!-- color is fixed yellow for events, no picker needed -->
       <div style="margin-top:6px;"></div>
       <div class="modal-row" id="modal-event-range-row" style="display:none;">
-        <div><label>Día inicio</label>
-          <select id="modal-event-day-start"></select>
-        </div>
-        <div><label>Slot inicio</label>
-          <select id="modal-event-slot-start"></select>
-        </div>
-        <div><label>Día fin</label>
-          <select id="modal-event-day-end"></select>
-        </div>
-        <div><label>Slot fin</label>
-          <select id="modal-event-slot-end"></select>
-        </div>
+        <div><label>Día inicio</label><select id="modal-event-day-start"></select></div>
+        <div><label>Slot inicio</label><select id="modal-event-slot-start"></select></div>
+        <div><label>Día fin</label><select id="modal-event-day-end"></select></div>
+        <div><label>Slot fin</label><select id="modal-event-slot-end"></select></div>
       </div>
     </div>
     <div class="modal-actions">
@@ -503,32 +447,75 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   </div>
 </div>
 
-<!-- New user modal -->
+<!-- User role modal (for OWNER to manage roles — no PIN, no create account) -->
 <div class="modal-overlay" id="modal-user">
   <div class="modal">
-    <h3 id="modal-user-title">Usuario</h3>
-    <label>Nombre</label>
-    <input type="text" id="modal-user-name"/>
+    <h3 id="modal-user-title">Editar rol de usuario</h3>
+    <div id="modal-user-info" style="font-size:11px;color:#555;margin-bottom:10px;"></div>
     <label>Rol</label>
     <select id="modal-user-role">
       <option value="OWNER">Owner</option>
       <option value="EDITOR">Editor</option>
-
     </select>
-    <label>PIN (4–8 dígitos)</label>
-    <input type="password" id="modal-user-pin" maxlength="8"/>
     <div class="modal-actions">
       <button class="modal-btn secondary" onclick="Modal.close('modal-user')">Cancelar</button>
-      <button class="modal-btn primary" onclick="Settings.saveUser()">Guardar</button>
+      <button class="modal-btn primary" onclick="Settings.saveUserRole()">Guardar</button>
     </div>
   </div>
 </div>
 
-<script>
+<!-- Week template modal -->
+<div class="modal-overlay" id="modal-template">
+  <div class="modal">
+    <h3>Cargar plantilla de semana</h3>
+    <label>Selecciona plantilla</label>
+    <select id="modal-template-select" style="margin-bottom:10px;"></select>
+    <div style="font-size:11px;color:#888;margin-bottom:10px;">Los bloques se añadirán a la semana actual.</div>
+    <div class="modal-actions">
+      <button class="modal-btn secondary" onclick="Modal.close('modal-template')">Cancelar</button>
+      <button class="modal-btn primary" onclick="WeekMgr.applyTemplate()">Cargar</button>
+    </div>
+  </div>
+</div>
+
+<div id="print-frame"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FIREBASE SDK (ES modules via CDN)
+═══════════════════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut }
+  from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot, serverTimestamp, collection, getDocs, deleteDoc, updateDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDJMw4o_YA_8IBl6ikJY6DN-TK5OGW0nhU",
+  authDomain: "horarios-departamento.firebaseapp.com",
+  projectId: "horarios-departamento",
+  storageBucket: "horarios-departamento.firebasestorage.app",
+  messagingSenderId: "338434890835",
+  appId: "1:338434890835:web:8d2d7d703200aa434ffaa6"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const auth  = getAuth(fbApp);
+const db    = getFirestore(fbApp);
+
+// Expose Firebase to global scope for non-module scripts
+window.__fb = {
+  auth, db, doc, getDoc, setDoc, onSnapshot, serverTimestamp,
+  collection, getDocs, deleteDoc, updateDoc,
+  signInWithEmailAndPassword, signOut, onAuthStateChanged
+};
+
+// ═══════════════════════════════════════════════════════════
+// CONSTANTS
+// ═══════════════════════════════════════════════════════════
 
 const LOGO = "./assets/rm.png";
 
-// Time slots: 08:00 → 21:00 inclusive (27 slots × 30min)
 const SLOTS = (() => {
   const s = [];
   const start = new Date("2000-01-01T08:00:00");
@@ -538,14 +525,14 @@ const SLOTS = (() => {
     const mm = String(d.getMinutes()).padStart(2, "0");
     s.push(`${hh}:${mm}`);
   }
-  return s; // 27 entries: 08:00..21:00
+  return s;
 })();
 
 const DAY_NAMES  = ["LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","DOMINGO"];
-const ROW_H      = 22;  // px per slot row
-const COL_W      = 30;  // px per member column
-const TIME_W     = 56;  // px time column
-const SEP_W      = 6;   // px day separator
+const ROW_H      = 22;
+const COL_W      = 30;
+const TIME_W     = 56;
+const SEP_W      = 6;
 
 const DEFAULT_GROUPS = [
   {id:"gestion", name:"Gestión",           color:"#5BA4D0"},
@@ -571,62 +558,20 @@ const DEFAULT_MEMBERS = [
   {id:"m_JJV", initials:"JJV", name:"JJV", group:"rend",    order:14, joinDate:"2025-07-01"},
 ];
 
-/*
-  AppState = {
-    users: User[],
-    seasons: Season[],
-    currentSeasonId: string,
-    currentWeekId: string,
-    showWeekend: boolean
-  }
-
-  User = { id, name, role:"OWNER"|"EDITOR"|, pinHash:string }
-
-  Season = {
-    id, name, startYear,
-    groups: Group[],
-    members: Member[],
-    tipoBlocks: Block[],
-    weeks: Week[],
-    events: Event[]
-  }
-
-  Group  = { id, name, color }
-  Member = { id, initials, name, group:groupId, order:int, joinDate:string }
-
-  Week = {
-    id: string (ISO monday YYYY-MM-DD),
-    label: string,
-    startDate: string,
-    blocks: Block[]
-  }
-
-  Block = {
-    id, type:"working"|"absent"|"external",
-    memberId, dayIdx:0-6, fromSlot:0-24, toSlot:1-25,
-    label:string
-  }
-
-  Event = {
-    id, title, color,
-    memberId: string|null,  // null = team event (all members)
-    startDay:0-6, startSlot:0-24,
-    endDay:0-6, endSlot:1-25,
-    weekId: string
-  }
-*/
+// ═══════════════════════════════════════════════════════════
+// STATE — Firestore-backed with onSnapshot real-time sync
+// ═══════════════════════════════════════════════════════════
 
 const State = (() => {
-  const KEY = "rm_app_v1";
+  const APP_DOC = "horarios";
+  let _s = null;
+  let _unsubscribe = null;
+  let _saving = false; // debounce flag to avoid echo from own writes
+  let _saveTimeout = null;
 
   function _default() {
     const sid = _uid();
     return {
-      users: [
-        { id:_uid(), name:"Owner", role:"OWNER",   pinHash: _hash("1234") },
-        { id:_uid(), name:"Editor",role:"EDITOR",  pinHash: _hash("5678") },
-
-      ],
       seasons: [{
         id: sid, name:"Temporada 25/26", startYear:2025,
         groups: DEFAULT_GROUPS.map(g=>({...g})),
@@ -641,36 +586,91 @@ const State = (() => {
     };
   }
 
-  let _s = null;
+  let _s_initialized = false;
 
-  function load() {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) { _s = JSON.parse(raw); return; }
-    } catch(e){}
-    _s = _default();
-    save();
+  async function load() {
+    const ref = doc(db, "apps", APP_DOC);
+    const snap = await getDoc(ref);
+
+    if (snap.exists() && snap.data().state) {
+      _s = snap.data().state;
+    } else {
+      _s = _default();
+      await _writeToFirestore();
+    }
+    _s_initialized = true;
+
+    // Start real-time listener
+    _startListener();
   }
 
-  function save() { localStorage.setItem(KEY, JSON.stringify(_s)); }
+  function _startListener() {
+    if (_unsubscribe) _unsubscribe();
+    const ref = doc(db, "apps", APP_DOC);
+    _unsubscribe = onSnapshot(ref, (snap) => {
+      if (_saving) return; // ignore echoes from our own writes
+      if (!snap.exists()) return;
+      const remote = snap.data().state;
+      if (!remote) return;
+      _s = remote;
+      // Re-render everything
+      if (_s_initialized && typeof App !== 'undefined') {
+        try {
+          App.renderSeasonSelect();
+          App.renderWeekSelect();
+          App.renderWeek();
+          App.renderTipo();
+          Grid.renderLegend("legend-tipo", State.currentSeason());
+          _setSyncDot("online");
+        } catch(e) { console.warn("Re-render on snapshot:", e); }
+      }
+    }, (err) => {
+      console.error("onSnapshot error:", err);
+      _setSyncDot("offline");
+    });
+  }
+
+  async function _writeToFirestore() {
+    const ref = doc(db, "apps", APP_DOC);
+    _saving = true;
+    _setSyncDot("saving");
+    try {
+      await setDoc(ref, {
+        state: _s,
+        updatedAt: serverTimestamp(),
+        updatedBy: Auth.uid() || null
+      }, { merge: true });
+      _setSyncDot("online");
+    } catch(e) {
+      console.error("Firestore write error:", e);
+      _setSyncDot("offline");
+    }
+    // Small delay before re-enabling listener to avoid echo
+    setTimeout(() => { _saving = false; }, 500);
+  }
+
+  // Debounced save: waits 300ms after last call, then writes
+  function save() {
+    if (_saveTimeout) clearTimeout(_saveTimeout);
+    _saveTimeout = setTimeout(() => {
+      _writeToFirestore();
+    }, 300);
+  }
+
+  // Immediate save for critical actions
+  async function saveNow() {
+    if (_saveTimeout) clearTimeout(_saveTimeout);
+    await _writeToFirestore();
+  }
+
   function get()  { return _s; }
+  function set(v) { _s = v; }
 
   function _uid() { return "x" + Math.random().toString(36).slice(2,10); }
-  function _hash(pin) {
-    // Simple non-crypto hash — sufficient for UX-level PIN
-    let h = 0;
-    for (let i=0; i<pin.length; i++) h = (Math.imul(31,h) + pin.charCodeAt(i)) | 0;
-    return String(h >>> 0);
-  }
-
-  function checkPin(role, pin) {
-    const s = get();
-    // Any user of matching role whose pin matches
-    return s.users.some(u => u.role === role && u.pinHash === _hash(pin));
-  }
 
   function currentSeason() {
     const s = get();
+    if (!s) return null;
     return s.seasons.find(x => x.id === s.currentSeasonId) || s.seasons[0];
   }
 
@@ -681,7 +681,6 @@ const State = (() => {
     return cs.weeks.find(w => w.id === s.currentWeekId) || null;
   }
 
-  // ISO current week monday
   function currentISOMonday() {
     const d = new Date();
     const day = d.getDay() || 7;
@@ -689,44 +688,121 @@ const State = (() => {
     return d.toISOString().slice(0,10);
   }
 
-  return { load, save, get, checkPin, currentSeason, currentWeek, currentISOMonday, _uid, _hash };
+  function stopListener() {
+    if (_unsubscribe) { _unsubscribe(); _unsubscribe = null; }
+  }
+
+  function _setSyncDot(status) {
+    const el = document.querySelector("#sync-indicator .sync-dot");
+    if (!el) return;
+    el.className = "sync-dot " + status;
+  }
+
+  return { load, save, saveNow, get, set, currentSeason, currentWeek, currentISOMonday, _uid, stopListener };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// AUTH — Firebase Authentication + Firestore roles
+// ═══════════════════════════════════════════════════════════
 
 const Auth = (() => {
   let _role = null;
+  let _uid  = null;
+  let _email = null;
 
-  function login() {
-    const role = document.getElementById("auth-role-select").value;
-    const pin  = document.getElementById("auth-pin").value;
-    if (!pin) { showErr("Introduce un PIN"); return; }
-    if (State.checkPin(role, pin)) {
-      _role = role;
-      sessionStorage.setItem("rm_role", role);
-      document.getElementById("auth-screen").style.display = "none";
-      document.getElementById("main-ui").style.display = "flex";
-      document.getElementById("main-tabs").style.display = "flex";
-      App.init();
-    } else {
-      showErr("PIN incorrecto");
+  async function login() {
+    const email = document.getElementById("auth-email").value.trim();
+    const pass  = document.getElementById("auth-pass").value;
+    if (!email || !pass) { showErr("Introduce email y contraseña"); return; }
+
+    const btn = document.getElementById("auth-btn");
+    const loading = document.getElementById("auth-loading");
+    btn.disabled = true;
+    loading.style.display = "block";
+
+    try {
+      const cred = await signInWithEmailAndPassword(auth, email, pass);
+      // Role will be loaded in onAuthStateChanged
+    } catch(e) {
+      console.error("Login error:", e);
+      let msg = "Login inválido";
+      if (e.code === "auth/user-not-found") msg = "Usuario no encontrado";
+      if (e.code === "auth/wrong-password" || e.code === "auth/invalid-credential") msg = "Contraseña incorrecta";
+      if (e.code === "auth/invalid-email") msg = "Email no válido";
+      if (e.code === "auth/too-many-requests") msg = "Demasiados intentos. Espera unos minutos.";
+      showErr(msg);
+      btn.disabled = false;
+      loading.style.display = "none";
     }
   }
 
-  function logout() {
-    _role = null;
-    sessionStorage.removeItem("rm_role");
-    document.getElementById("auth-screen").style.display = "flex";
-    document.getElementById("main-ui").style.display = "none";
-    document.getElementById("main-tabs").style.display = "none";
-    document.getElementById("auth-pin").value = "";
+  async function fetchRole(uid) {
+    const ref = doc(db, "users", uid);
+    const snap = await getDoc(ref);
+    if (!snap.exists()) {
+      // User exists in Auth but not in Firestore → block access
+      return null;
+    }
+    return snap.data().role || null;
   }
 
-  function role() { return _role; }
+  async function _onUser(user) {
+    const btn = document.getElementById("auth-btn");
+    const loading = document.getElementById("auth-loading");
+
+    if (user) {
+      _uid = user.uid;
+      _email = user.email;
+      _role = await fetchRole(user.uid);
+
+      if (!_role) {
+        // Not provisioned in Firestore
+        showErr("Tu cuenta no tiene permisos asignados. Contacta al administrador.");
+        await signOut(auth);
+        _uid = null; _email = null; _role = null;
+        if (btn) btn.disabled = false;
+        if (loading) loading.style.display = "none";
+        return;
+      }
+
+      // Load state from Firestore
+      await State.load();
+
+      // Show UI
+      document.getElementById("auth-screen").style.display = "none";
+      document.getElementById("main-ui").style.display = "flex";
+      document.getElementById("main-tabs").style.display = "flex";
+
+      // Show email in topbar
+      const emailEl = document.getElementById("user-email-display");
+      if (emailEl) emailEl.textContent = _email;
+
+      App.init();
+    } else {
+      // Signed out
+      _uid = null; _email = null; _role = null;
+      State.stopListener();
+      document.getElementById("auth-screen").style.display = "flex";
+      document.getElementById("main-ui").style.display = "none";
+      document.getElementById("main-tabs").style.display = "none";
+      document.getElementById("auth-pass").value = "";
+      if (btn) btn.disabled = false;
+      if (loading) loading.style.display = "none";
+    }
+  }
+
+  async function logout() {
+    State.stopListener();
+    await signOut(auth);
+  }
+
+  function role()     { return _role; }
+  function uid()      { return _uid; }
+  function email()    { return _email; }
   function isOwner()  { return _role === "OWNER"; }
   function isEditor() { return _role === "EDITOR"; }
-
   function canEdit()  { return _role === "OWNER" || _role === "EDITOR"; }
 
-  // EDITOR can only edit the current ISO week
   function editorCanEditCurrentWeek() {
     if (isOwner()) return true;
     const w = State.currentWeek();
@@ -737,21 +813,29 @@ const Auth = (() => {
   function showErr(msg) {
     const el = document.getElementById("auth-error");
     el.textContent = msg; el.style.display = "block";
-    setTimeout(() => el.style.display = "none", 2500);
+    setTimeout(() => el.style.display = "none", 4000);
   }
 
-  // On load: restore session
-  function restore() {
-    const r = sessionStorage.getItem("rm_role");
-    if (r) { _role = r; return true; }
-    return false;
-  }
+  // Start listening for auth state
+  onAuthStateChanged(auth, (user) => _onUser(user));
 
-  return { login, logout, role, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, restore };
+  return { login, logout, role, uid, email, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, fetchRole };
 })();
 
+// Enter key on auth fields
+document.getElementById("auth-pass")?.addEventListener("keydown", e => {
+  if (e.key === "Enter") Auth.login();
+});
+document.getElementById("auth-email")?.addEventListener("keydown", e => {
+  if (e.key === "Enter") document.getElementById("auth-pass").focus();
+});
+
+// ═══════════════════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════════════════
+
 const Modal = (() => {
-  let _pending = null; // {type, memberId, dayIdx, fromSlot, context, isTeam}
+  let _pending = null;
 
   function open(id)  { document.getElementById(id).classList.add("open"); }
   function close(id) {
@@ -759,7 +843,6 @@ const Modal = (() => {
     if (id === "modal-block") _pending = null;
   }
 
-  // Close on backdrop click
   document.addEventListener("click", e => {
     if (e.target.classList.contains("modal-overlay")) {
       e.target.classList.remove("open");
@@ -780,14 +863,13 @@ const Modal = (() => {
     document.getElementById("modal-block-text").value = "";
     const isEvent = t.startsWith("event");
     document.getElementById("modal-event-extras").style.display = isEvent ? "" : "none";
-    document.getElementById("modal-event-range-row").style.display = "none"; // multi-day not via modal
+    document.getElementById("modal-event-range-row").style.display = "none";
     open("modal-block");
     setTimeout(() => document.getElementById("modal-block-text").focus(), 50);
   }
 
   function confirmBlock() {
     const label = document.getElementById("modal-block-text").value.trim();
-    // Handle event rename (dblclick)
     if (Modal._renamingEvent) {
       const { ev, season, week } = Modal._renamingEvent;
       Modal._renamingEvent = null;
@@ -806,9 +888,7 @@ const Modal = (() => {
     DragDrop.finalize(p, label, null);
   }
 
-  // Enter key submits
   document.getElementById("modal-block-text")?.addEventListener("keydown", e => {
-    // Ctrl+Enter or Cmd+Enter confirms; plain Enter = new line in textarea
     if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); confirmBlock(); }
   });
 
@@ -817,6 +897,10 @@ const Modal = (() => {
 
   return { open, close, openBlock, confirmBlock, setPending, getPending };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// GRID
+// ═══════════════════════════════════════════════════════════
 
 const Grid = (() => {
   let _showWeekend = false;
@@ -831,62 +915,54 @@ const Grid = (() => {
   function activeDayCount() { return _showWeekend ? 7 : 5; }
   function activeDay(d)     { return d < activeDayCount(); }
 
-  // Returns pixel x offset for day d, member index mi within day
-  // Layout: TIME_W | day0:(members...SEP) | day1:(members...SEP) ...
   function _measure(wrap, season, isTipo) {
-  if (!wrap) return null;
-  const table = wrap.querySelector("table");
-  if (!table) return null;
-  if (wrap._gridMetrics && wrap._gridMetrics._table === table) return wrap._gridMetrics;
-
-  const rowCells = wrap.querySelectorAll('td.slot[data-d="0"][data-s="0"]');
-  const c0 = rowCells && rowCells[0];
-  if (!c0) return null;
-
-  const wrapRect = wrap.getBoundingClientRect();
-  const r0 = c0.getBoundingClientRect();
-
-  const r1 = rowCells[1] ? rowCells[1].getBoundingClientRect() : null;
-  const pitchX = r1 ? (r1.left - r0.left) : r0.width;
-
-  const cDay1 = wrap.querySelector('td.slot[data-d="1"][data-s="0"]');
-  const rDay1 = cDay1 ? cDay1.getBoundingClientRect() : null;
-  const dayPitch = rDay1 ? (rDay1.left - r0.left) : (pitchX * (sorted(season.members).length) + SEP_W);
-
-  const cS1 = wrap.querySelector('td.slot[data-d="0"][data-s="1"]');
-  const rS1 = cS1 ? cS1.getBoundingClientRect() : null;
-  const pitchY = rS1 ? (rS1.top - r0.top) : r0.height;
-
-  const metrics = {
-    _table: table,
-    baseX: r0.left - wrapRect.left,
-    baseY: r0.top  - wrapRect.top,
-    pitchX, pitchY, dayPitch,
-    cellW: r0.width,
-    cellH: r0.height
-  };
-  wrap._gridMetrics = metrics;
-  return metrics;
-}
-
-function cellX(wrap, season, dayIdx, memberIdx, isTipo) {
-  const mt = _measure(wrap, season, isTipo);
-  if (!mt) {
-    const members = sorted(season.members);
-    const mc = members.length;
-    return TIME_W + dayIdx * (mc * COL_W + SEP_W) + memberIdx * COL_W;
+    if (!wrap) return null;
+    const table = wrap.querySelector("table");
+    if (!table) return null;
+    if (wrap._gridMetrics && wrap._gridMetrics._table === table) return wrap._gridMetrics;
+    const rowCells = wrap.querySelectorAll('td.slot[data-d="0"][data-s="0"]');
+    const c0 = rowCells && rowCells[0];
+    if (!c0) return null;
+    const wrapRect = wrap.getBoundingClientRect();
+    const r0 = c0.getBoundingClientRect();
+    const r1 = rowCells[1] ? rowCells[1].getBoundingClientRect() : null;
+    const pitchX = r1 ? (r1.left - r0.left) : r0.width;
+    const cDay1 = wrap.querySelector('td.slot[data-d="1"][data-s="0"]');
+    const rDay1 = cDay1 ? cDay1.getBoundingClientRect() : null;
+    const dayPitch = rDay1 ? (rDay1.left - r0.left) : (pitchX * (sorted(season.members).length) + SEP_W);
+    const cS1 = wrap.querySelector('td.slot[data-d="0"][data-s="1"]');
+    const rS1 = cS1 ? cS1.getBoundingClientRect() : null;
+    const pitchY = rS1 ? (rS1.top - r0.top) : r0.height;
+    const metrics = {
+      _table: table,
+      baseX: r0.left - wrapRect.left,
+      baseY: r0.top  - wrapRect.top,
+      pitchX, pitchY, dayPitch,
+      cellW: r0.width,
+      cellH: r0.height
+    };
+    wrap._gridMetrics = metrics;
+    return metrics;
   }
-  return mt.baseX + dayIdx * mt.dayPitch + memberIdx * mt.pitchX;
-}
 
-function cellY(wrap, season, slotIdx, isTipo) {
-  const mt = _measure(wrap, season, isTipo);
-  if (!mt) {
-    const headerH = 26 + 22 + 22;
-    return headerH + slotIdx * ROW_H;
+  function cellX(wrap, season, dayIdx, memberIdx, isTipo) {
+    const mt = _measure(wrap, season, isTipo);
+    if (!mt) {
+      const members = sorted(season.members);
+      const mc = members.length;
+      return TIME_W + dayIdx * (mc * COL_W + SEP_W) + memberIdx * COL_W;
+    }
+    return mt.baseX + dayIdx * mt.dayPitch + memberIdx * mt.pitchX;
   }
-  return mt.baseY + slotIdx * mt.pitchY;
-}
+
+  function cellY(wrap, season, slotIdx, isTipo) {
+    const mt = _measure(wrap, season, isTipo);
+    if (!mt) {
+      const headerH = 26 + 22 + 22;
+      return headerH + slotIdx * ROW_H;
+    }
+    return mt.baseY + slotIdx * mt.pitchY;
+  }
 
   function sorted(members) {
     return [...members].sort((a,b) => a.order - b.order);
@@ -915,30 +991,21 @@ function cellY(wrap, season, slotIdx, isTipo) {
     return `${dd}/${mm}/${yy}`;
   }
 
-  // ── Build HTML table ──────────────────────────────────────────────────
   function buildTable(season, week, isTipo) {
     const members = sorted(season.members);
     const dayCount = isTipo ? 5 : activeDayCount();
     const dates    = week ? weekDates(week) : null;
-
     let html = `<table class="sched">`;
-
-    // ── THEAD ──
     html += `<thead>`;
-
-    // Season row (logo + title spanning all)
     const memberSpan = members.length;
-    const totalCols  = dayCount * memberSpan + (dayCount - 1); // seps between days
+    const totalCols  = dayCount * memberSpan + (dayCount - 1);
     const title = isTipo
       ? `HORARIOS TIPO – ${season.name.toUpperCase()}`
       : `HORARIOS – ${season.name.toUpperCase()}`;
-
     html += `<tr class="r-season">`;
     html += `<th class="tc-logo" rowspan="3"><img src="${LOGO}" alt="RM" style="width:44px;height:44px;object-fit:contain;display:block;margin:0 auto;"/></th>`;
     html += `<th colspan="${totalCols}" style="font-size:16px;">${title}</th>`;
     html += `</tr>`;
-
-    // Combined day+date row
     html += `<tr class="r-daydate">`;
     for (let d = 0; d < dayCount; d++) {
       const dateStr = dates ? ` - ${fmtDate(dates[d])}` : "";
@@ -946,8 +1013,6 @@ function cellY(wrap, season, slotIdx, isTipo) {
       if (d < dayCount-1) html += `<th class="sep"></th>`;
     }
     html += `</tr>`;
-
-    // Member initials row (all uniform blue)
     html += `<tr class="r-member">`;
     for (let d = 0; d < dayCount; d++) {
       members.forEach(m => {
@@ -957,8 +1022,6 @@ function cellY(wrap, season, slotIdx, isTipo) {
     }
     html += `</tr>`;
     html += `</thead>`;
-
-    // ── TBODY ──
     html += `<tbody>`;
     SLOTS.forEach((slot, si) => {
       const isHalf = slot.endsWith(":30");
@@ -979,11 +1042,9 @@ function cellY(wrap, season, slotIdx, isTipo) {
       html += `</tr>`;
     });
     html += `</tbody></table>`;
-
     return html;
   }
 
-  // ── Render blocks ─────────────────────────────────────────────────────
   function renderBlocks(wrap, blocks, season, isTipo, week) {
     blocks.forEach(b => renderOneBlock(wrap, b, season, isTipo, week));
   }
@@ -991,32 +1052,25 @@ function cellY(wrap, season, slotIdx, isTipo) {
   function renderOneBlock(wrap, block, season, isTipo, week) {
     const table = wrap.querySelector("table");
     if (!table) return;
-
     const members = sorted(season.members);
     const memberIdx = members.findIndex(m => m.id === block.memberId);
     if (memberIdx < 0) return;
-
     const dayCount = isTipo ? 5 : activeDayCount();
     if (block.dayIdx >= dayCount) return;
     if (block.fromSlot >= SLOTS.length) return;
-
-    // Deterministic positioning — no getBoundingClientRect
     const x = cellX(wrap, season, block.dayIdx, memberIdx, isTipo);
     const y = cellY(wrap, season, block.fromSlot, isTipo);
     const w = (()=>{ const mt = _measure(wrap, season, isTipo); return mt ? mt.cellW : (COL_W - 2); })();
     const h = (()=>{ const mt = _measure(wrap, season, isTipo); const py = mt ? mt.pitchY : ROW_H; return (block.toSlot - block.fromSlot) * py; })();
-
     let color = block.type === "working"
       ? groupColor(season, block.memberId)
       : (block.type === "absent" ? "#888" : "#222");
-
     const div = document.createElement("div");
     div.className = `sched-block block-${block.type}`;
     div.id = "blk-" + block.id;
     div.dataset.bid = block.id;
     div.dataset.ctx = isTipo ? "tipo" : "week";
     div.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${color};`;
-
     const inner = document.createElement("div");
     inner.className = "block-inner";
     if (block.type !== "working" && block.label) {
@@ -1026,15 +1080,11 @@ function cellY(wrap, season, slotIdx, isTipo) {
       inner.appendChild(lbl);
     }
     div.appendChild(inner);
-
-    // Resize handle
     const rh = document.createElement("div");
     rh.className = "block-resize";
     rh.addEventListener("mousedown",  e => Resize.start(e, block, div, wrap, isTipo));
     rh.addEventListener("touchstart", e => Resize.startTouch(e, block, div, wrap, isTipo), {passive:false});
     div.appendChild(rh);
-
-    // Delete button
     const del = document.createElement("span");
     del.className = "block-del"; del.textContent = "×";
     del.addEventListener("click", e => {
@@ -1044,19 +1094,15 @@ function cellY(wrap, season, slotIdx, isTipo) {
       deleteBlock(block.id, isTipo, week, season);
     });
     div.appendChild(del);
-
-    // Move via drag
     div.addEventListener("mousedown", e => {
       if (rh.contains(e.target) || del.contains(e.target)) return;
       if (!Auth.canEdit()) return;
       if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) return;
       MoveBlock.start(e, block, div, wrap, isTipo, week, season);
     });
-
     wrap.appendChild(div);
   }
 
-  // ── Render EVENTS ─────────────────────────────────────────────────────
   function renderEvents(wrap, events, season, week) {
     if (!events || !week) return;
     const weekEvents = events.filter(e => e.weekId === week.id);
@@ -1068,51 +1114,39 @@ function cellY(wrap, season, slotIdx, isTipo) {
     if (!table) return;
     const members = sorted(season.members);
     const dayCount = activeDayCount();
-
-    // Render one fragment per day the event covers
     const startDay = Math.max(0, ev.startDay);
     const endDay   = Math.min(dayCount - 1, ev.endDay);
-
     for (let d = startDay; d <= endDay; d++) {
       const fromSlot = (d === ev.startDay) ? ev.startSlot : 0;
       const toSlot   = (d === ev.endDay)   ? ev.endSlot   : SLOTS.length;
       const continuesRight = ev.endDay > d;
       const continuesLeft  = ev.startDay < d;
-
       let x, width;
       if (ev.memberId) {
-        // Member-specific event: render in that member's column
         const mi = members.findIndex(m => m.id === ev.memberId);
         if (mi < 0 || d >= dayCount) continue;
         x = cellX(wrap, season, d, mi, false);
         width = (()=>{ const mt=_measure(wrap, season, false); return mt ? mt.cellW : (COL_W - 2); })();
       } else {
-        // Team event: span all members in that day
         x = cellX(wrap, season, d, 0, false);
         width = (()=>{ const mt=_measure(wrap, season, false); if (!mt) return members.length * COL_W - 2; const cells = wrap.querySelectorAll(`td.slot[data-d='${d}'][data-s='${fromSlot}']`); if (!cells || !cells.length) return members.length * mt.pitchX; const first = cells[0].getBoundingClientRect(); const last = cells[cells.length-1].getBoundingClientRect(); return last.right - first.left; })();
       }
-
       const y = cellY(wrap, season, fromSlot, false);
       const h = (()=>{ const mt=_measure(wrap, season, false); const py=mt?mt.pitchY:ROW_H; return (toSlot-fromSlot)*py; })();
-
       const div = document.createElement("div");
       div.className = "event-overlay";
       div.id = `ev-${ev.id}-d${d}`;
       div.dataset.eid = ev.id;
       div.dataset.day = d;
-      const txtColor = ev.color === "#FFD966" ? "#1a2540" : "#fff";
       div.style.cssText = `left:${x}px;top:${y}px;width:${width}px;height:${h}px;background:${ev.color};`;
-
       const lbl = document.createElement("div");
       lbl.className = "event-label";
       lbl.textContent = ev.title + (continuesLeft ? " ←" : "") + (continuesRight ? " →" : "");
       div.appendChild(lbl);
-
       const rh = document.createElement("div");
       rh.className = "event-resize";
       rh.addEventListener("mousedown", e => EventResize.start(e, ev, d, div, wrap, season, week));
       div.appendChild(rh);
-
       const del = document.createElement("span");
       del.className = "event-del"; del.textContent = "×";
       del.addEventListener("click", e => {
@@ -1121,16 +1155,12 @@ function cellY(wrap, season, slotIdx, isTipo) {
         deleteEvent(ev.id, season, week);
       });
       div.appendChild(del);
-
       div.addEventListener("dblclick", e => {
         e.stopPropagation();
         if (!Auth.canEdit()) return;
-        const cur = ev.title || "";
-        // Use a simple prompt-style modal — reuse modal-block
         document.getElementById("modal-block-title").textContent = "Editar nombre del evento";
-        document.getElementById("modal-block-text").value = cur;
+        document.getElementById("modal-block-text").value = ev.title || "";
         document.getElementById("modal-event-extras").style.display = "none";
-        // Store rename context
         Modal._renamingEvent = { ev, season, week };
         document.getElementById("modal-block").classList.add("open");
         setTimeout(() => document.getElementById("modal-block-text").focus(), 50);
@@ -1140,7 +1170,6 @@ function cellY(wrap, season, slotIdx, isTipo) {
         if (!Auth.canEdit()) return;
         MoveEvent.start(e, ev, div, wrap, season, week);
       });
-
       wrap.appendChild(div);
     }
   }
@@ -1161,16 +1190,10 @@ function cellY(wrap, season, slotIdx, isTipo) {
     App.renderWeek();
   }
 
-  function typeLabel(t) {
-    return { absent:"AUSENTE", external:"TRABAJO EXTERNO" }[t] || t.toUpperCase();
-  }
-
-  // Public helper: full re-render of a wrap
   function render(wrapperId, season, week, isTipo) {
     const wrap = document.getElementById(wrapperId);
     if (!wrap) return;
     wrap.innerHTML = buildTable(season, week, isTipo);
-    // wait a tick for DOM layout
     requestAnimationFrame(() => {
       const blocks = isTipo ? season.tipoBlocks : (week ? week.blocks : []);
       renderBlocks(wrap, blocks, season, isTipo, week);
@@ -1182,7 +1205,7 @@ function cellY(wrap, season, slotIdx, isTipo) {
 
   function renderLegend(legendId, season) {
     const el = document.getElementById(legendId);
-    if (!el) return;
+    if (!el || !season) return;
     el.innerHTML = season.groups.map(g =>
       `<div class="leg-item"><div class="leg-sw" style="background:${g.color}"></div><span>${g.name}</span></div>`
     ).join("") +
@@ -1193,12 +1216,16 @@ function cellY(wrap, season, slotIdx, isTipo) {
   }
 
   return { render, renderLegend, toggleWeekend, activeDayCount, cellX, cellY, sorted,
-           groupColor, weekDates, fmtDate, deleteBlock, deleteEvent, typeLabel };
+           groupColor, weekDates, fmtDate, deleteBlock, deleteEvent };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// DRAG & DROP
+// ═══════════════════════════════════════════════════════════
 
 const DragDrop = (() => {
   let _chipType = null;
-  let _chipCtx  = null; // "week" or "tipo"
+  let _chipCtx  = null;
 
   function paletteStart(e) {
     _chipType = e.currentTarget.dataset.type;
@@ -1207,38 +1234,27 @@ const DragDrop = (() => {
     e.dataTransfer.setData("text/plain", _chipType);
   }
 
-  function over(e)  {
-    e.preventDefault();
-    e.currentTarget.classList.add("drag-over");
-  }
+  function over(e)  { e.preventDefault(); e.currentTarget.classList.add("drag-over"); }
   function leave(e) { e.currentTarget.classList.remove("drag-over"); }
 
   function drop(e) {
     e.preventDefault();
     e.currentTarget.classList.remove("drag-over");
-
     const type = _chipType || e.dataTransfer.getData("text/plain");
     if (!type) return;
-
     const cell     = e.currentTarget;
     const memberId = cell.dataset.m;
     const dayIdx   = parseInt(cell.dataset.d);
     const slotIdx  = parseInt(cell.dataset.s);
     const ctx      = cell.dataset.ctx || "week";
-
     if (!Auth.canEdit()) { _chipType = null; return; }
-    // OWNER always can edit; EDITOR only current week
     if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) {
       showEditorNotice(); _chipType = null; return;
     }
-
     const isTipo = ctx === "tipo";
-
-    // Validate we have a target
     if (!isTipo && !State.currentWeek()) {
       alert("Crea primero una semana."); _chipType = null; return;
     }
-
     const pending = {
       type, memberId, dayIdx,
       fromSlot: slotIdx,
@@ -1246,13 +1262,9 @@ const DragDrop = (() => {
       ctx, isTipo,
       isTeam: type === "event"
     };
-
     _chipType = null;
-
     if (type === "working") {
       finalize(pending, "", null);
-    } else if (type === "event") {
-      Modal.openBlock(pending);
     } else {
       Modal.openBlock(pending);
     }
@@ -1262,27 +1274,24 @@ const DragDrop = (() => {
     const season = State.currentSeason();
     const isTipo = pending.isTipo;
     const week   = isTipo ? null : State.currentWeek();
-
     if (!isTipo && !week) return;
-
     const isEvent = pending.type === "event";
-
     if (isEvent) {
       const ev = {
-        id: _uid(),
+        id: State._uid(),
         title: label || "Evento",
-        color: "#FFD966",          // fixed yellow
-        memberId: null,            // always team (full day width)
+        color: "#FFD966",
+        memberId: null,
         startDay:  pending.dayIdx,
         startSlot: pending.fromSlot,
-        endDay:    pending.dayIdx, // single day only
+        endDay:    pending.dayIdx,
         endSlot:   Math.min(pending.fromSlot + 4, SLOTS.length),
         weekId:    week ? week.id : null
       };
       season.events.push(ev);
     } else {
       const block = {
-        id: _uid(),
+        id: State._uid(),
         type: pending.type,
         memberId: pending.memberId,
         dayIdx: pending.dayIdx,
@@ -1296,12 +1305,10 @@ const DragDrop = (() => {
         week.blocks.push(block);
       }
     }
-
     State.save();
     isTipo ? App.renderTipo() : App.renderWeek();
   }
 
-  function _uid() { return State._uid(); }
   function showEditorNotice() {
     const el = document.getElementById("editor-limit-notice");
     if (el) { el.style.display = ""; setTimeout(() => el.style.display="none", 3000); }
@@ -1310,12 +1317,14 @@ const DragDrop = (() => {
   return { paletteStart, over, leave, drop, finalize };
 })();
 
+// ═══════════════════════════════════════════════════════════
+// RESIZE / MOVE BLOCKS / MOVE EVENTS / EVENT RESIZE
+// ═══════════════════════════════════════════════════════════
+
 const Resize = (() => {
   function start(e, block, div, wrap, isTipo) {
     e.preventDefault(); e.stopPropagation();
-    const startY  = e.clientY;
-    const startTo = block.toSlot;
-
+    const startY = e.clientY, startTo = block.toSlot;
     function move(ev) {
       const dy = ev.clientY - startY;
       const add = Math.round(dy / ROW_H);
@@ -1335,11 +1344,9 @@ const Resize = (() => {
     document.addEventListener("mousemove", move);
     document.addEventListener("mouseup", up);
   }
-
   function startTouch(e, block, div, wrap, isTipo) {
     e.preventDefault();
-    const startY  = e.touches[0].clientY;
-    const startTo = block.toSlot;
+    const startY = e.touches[0].clientY, startTo = block.toSlot;
     function move(ev) {
       const dy = ev.touches[0].clientY - startY;
       const add = Math.round(dy / ROW_H);
@@ -1355,7 +1362,6 @@ const Resize = (() => {
     document.addEventListener("touchmove", move, {passive:false});
     document.addEventListener("touchend", end);
   }
-
   return { start, startTouch };
 })();
 
@@ -1364,14 +1370,11 @@ const MoveBlock = (() => {
     e.preventDefault();
     const startX = e.clientX, startY = e.clientY;
     const divRect = div.getBoundingClientRect();
-    const offX = e.clientX - divRect.left;
-    const offY = e.clientY - divRect.top;
-
+    const offX = e.clientX - divRect.left, offY = e.clientY - divRect.top;
     const ghost = div.cloneNode(true);
     ghost.style.cssText = `position:fixed;left:${divRect.left}px;top:${divRect.top}px;width:${divRect.width}px;height:${divRect.height}px;z-index:9999;opacity:.85;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.4);border-radius:3px;`;
     document.body.appendChild(ghost);
     div.style.opacity = "0.25";
-
     function move(ev) {
       ghost.style.left = (divRect.left + ev.clientX - startX) + "px";
       ghost.style.top  = (divRect.top  + ev.clientY - startY) + "px";
@@ -1403,17 +1406,13 @@ const MoveEvent = (() => {
   function start(e, ev, div, wrap, season, week) {
     e.preventDefault();
     const startX = e.clientX, startY = e.clientY;
-    const dur    = ev.endSlot - ev.startSlot;
-    const dayDur = ev.endDay  - ev.startDay;
+    const dur = ev.endSlot - ev.startSlot, dayDur = ev.endDay - ev.startDay;
     const divRect = div.getBoundingClientRect();
-    const offX = e.clientX - divRect.left;
-    const offY = e.clientY - divRect.top;
-
+    const offX = e.clientX - divRect.left, offY = e.clientY - divRect.top;
     const ghost = div.cloneNode(true);
     ghost.style.cssText = `position:fixed;left:${divRect.left}px;top:${divRect.top}px;width:${divRect.width}px;height:${divRect.height}px;z-index:9999;opacity:.85;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.4);border-radius:3px;`;
     document.body.appendChild(ghost);
     div.style.opacity = "0.25";
-
     function move(mv) {
       ghost.style.left = (divRect.left + mv.clientX - startX) + "px";
       ghost.style.top  = (divRect.top  + mv.clientY - startY) + "px";
@@ -1426,12 +1425,10 @@ const MoveEvent = (() => {
       const el = document.elementFromPoint(uv.clientX - offX + 2, uv.clientY - offY + 2);
       const cell = el && el.closest("td.slot");
       if (cell) {
-        const newDay  = parseInt(cell.dataset.d);
-        const newSlot = parseInt(cell.dataset.s);
-        ev.startDay  = newDay;
-        ev.startSlot = newSlot;
-        ev.endDay    = Math.min(newDay + dayDur, Grid.activeDayCount() - 1);
-        ev.endSlot   = Math.min(newSlot + dur, SLOTS.length);
+        const newDay = parseInt(cell.dataset.d), newSlot = parseInt(cell.dataset.s);
+        ev.startDay = newDay; ev.startSlot = newSlot;
+        ev.endDay = Math.min(newDay + dayDur, Grid.activeDayCount() - 1);
+        ev.endSlot = Math.min(newSlot + dur, SLOTS.length);
         if (ev.memberId) ev.memberId = cell.dataset.m;
         State.save();
       }
@@ -1448,7 +1445,6 @@ const EventResize = (() => {
     e.preventDefault(); e.stopPropagation();
     const startY = e.clientY;
     const startSlot = ev.endDay === day ? ev.endSlot : SLOTS.length;
-
     function move(mv) {
       const dy = mv.clientY - startY;
       const add = Math.round(dy / ROW_H);
@@ -1473,16 +1469,18 @@ const EventResize = (() => {
   return { start };
 })();
 
+// ═══════════════════════════════════════════════════════════
+// WEEK MANAGER
+// ═══════════════════════════════════════════════════════════
+
 const WeekMgr = (() => {
   function openNew() {
-    // Default to next Monday
     const d = new Date();
     const day = d.getDay() || 7;
-    d.setDate(d.getDate() - day + 8); // next monday
+    d.setDate(d.getDate() - day + 8);
     document.getElementById("modal-week-date").value = d.toISOString().slice(0,10);
     Modal.open("modal-week");
   }
-
   function create() {
     const ds = document.getElementById("modal-week-date").value;
     if (!ds) return;
@@ -1498,10 +1496,9 @@ const WeekMgr = (() => {
     App.renderWeekSelect();
     App.renderWeek();
   }
-
   function loadTipo() {
     const season = State.currentSeason();
-    const week   = State.currentWeek();
+    const week = State.currentWeek();
     if (!week) { alert("Crea o selecciona una semana primero."); return; }
     if (!season.tipoBlocks || season.tipoBlocks.length === 0) {
       alert("El horario tipo está vacío.\nVe a la pestaña Tipo y arrastra chips para crear bloques tipo.");
@@ -1512,19 +1509,16 @@ const WeekMgr = (() => {
     State.save();
     App.renderWeek();
   }
-
   function clear() {
     const week = State.currentWeek();
     if (!week) { alert("No hay semana seleccionada."); return; }
     if (!confirm("¿Limpiar todos los bloques de esta semana?")) return;
     week.blocks = [];
-    // Also remove events belonging to this week
     const season = State.currentSeason();
     season.events = (season.events || []).filter(e => e.weekId !== week.id);
     State.save();
     App.renderWeek();
   }
-
   function delete_() {
     const s = State.get();
     const season = State.currentSeason();
@@ -1532,14 +1526,12 @@ const WeekMgr = (() => {
     if (!confirm("¿Eliminar esta semana y todos sus bloques?")) return;
     const deletedId = s.currentWeekId;
     season.weeks = season.weeks.filter(w => w.id !== deletedId);
-    // Also remove events for deleted week
     season.events = (season.events || []).filter(e => e.weekId !== deletedId);
     s.currentWeekId = season.weeks.length ? season.weeks[season.weeks.length-1].id : null;
     State.save();
     App.renderWeekSelect();
     App.renderWeek();
   }
-
   function saveAsTemplate() {
     const week = State.currentWeek();
     if (!week) { alert("No hay semana seleccionada."); return; }
@@ -1547,47 +1539,29 @@ const WeekMgr = (() => {
     if (!season.weekTemplates) season.weekTemplates = [];
     const name = prompt("Nombre para esta plantilla:", week.label);
     if (!name) return;
-    season.weekTemplates.push({
-      id: State._uid(),
-      name: name,
-      blocks: week.blocks.map(b => ({...b, id: State._uid()}))
-    });
+    season.weekTemplates.push({ id: State._uid(), name, blocks: week.blocks.map(b => ({...b, id: State._uid()})) });
     State.save();
     alert("Plantilla guardada: " + name);
   }
-
-  function openLoadTemplate() {
-    const season = State.currentSeason();
-    if (!season.weekTemplates || !season.weekTemplates.length) {
-      alert("No hay plantillas guardadas. Guarda primero una semana como plantilla."); return;
-    }
-    const sel = document.getElementById("modal-template-select");
-    sel.innerHTML = season.weekTemplates.map(t =>
-      `<option value="${t.id}">${t.name}</option>`
-    ).join("");
-    Modal.open("modal-template");
-  }
-
   function applyTemplate() {
     const season = State.currentSeason();
-    const week   = State.currentWeek();
+    const week = State.currentWeek();
     if (!week) return;
     const sel = document.getElementById("modal-template-select");
     const tpl = (season.weekTemplates || []).find(t => t.id === sel.value);
     if (!tpl) return;
-    // auto-add without confirm
-    const action = false; // was: confirm("¿Reemplazar bloques actuales?\n[Aceptar = Reemplazar | Cancelar = Añadir]");
     const copies = tpl.blocks.map(b => ({...b, id: State._uid()}));
-    if (action) week.blocks = copies;
-    else week.blocks.push(...copies);
+    week.blocks.push(...copies);
     State.save();
     Modal.close("modal-template");
     App.renderWeek();
   }
-
-  return { openNew, create, loadTipo, clear, delete_, saveAsTemplate, openLoadTemplate, applyTemplate };
+  return { openNew, create, loadTipo, clear, delete_, saveAsTemplate, applyTemplate };
 })();
-// WeekMgr.delete_ is exposed via the onclick directly
+
+// ═══════════════════════════════════════════════════════════
+// TIPO MANAGER
+// ═══════════════════════════════════════════════════════════
 
 const TipoMgr = (() => {
   function clear() {
@@ -1599,25 +1573,23 @@ const TipoMgr = (() => {
   function fillLV() {
     if (!Auth.canEdit()) return;
     const season = State.currentSeason();
-    const members = season.members;
-    for (let d = 0; d < 5; d++) {
-      members.forEach(m => {
+    season.members.forEach(m => {
+      for (let d = 0; d < 5; d++) {
         season.tipoBlocks.push({
-          id: State._uid(),
-          type: "working",
-          memberId: m.id,
-          dayIdx: d,
-          fromSlot: 2,  // 09:00
-          toSlot: 3,    // 09:30
-          label: ""
+          id: State._uid(), type: "working", memberId: m.id,
+          dayIdx: d, fromSlot: 2, toSlot: 3, label: ""
         });
-      });
-    }
+      }
+    });
     State.save();
     App.renderTipo();
   }
   return { clear, fillLV };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// EXPORTER
+// ═══════════════════════════════════════════════════════════
 
 const Exporter = (() => {
   async function exportPDF() {
@@ -1634,12 +1606,9 @@ const Exporter = (() => {
       offscreen.appendChild(wrap);
       wrap.style.position = "relative";
       wrap.style.width = wrap.scrollWidth + "px";
-
-      // Hide X and resize handles
       wrap.querySelectorAll('.block-del, .block-resize').forEach(el => {
         el.dataset.od = el.style.display; el.style.display = 'none';
       });
-      // Fix vertical text with canvas
       const vLabels = wrap.querySelectorAll('.block-external .block-label');
       const vBak = [];
       vLabels.forEach(lbl => {
@@ -1660,7 +1629,6 @@ const Exporter = (() => {
         par.appendChild(img);
       });
       wrap.querySelectorAll('td.tc, th.tc, th.tc-logo').forEach(el => el.style.position = 'static');
-      // Force logo size for html2canvas — replace img with pre-drawn canvas to avoid distortion
       const logoImgs = wrap.querySelectorAll('th.tc-logo img');
       const logoBak = [];
       logoImgs.forEach(img => {
@@ -1682,13 +1650,11 @@ const Exporter = (() => {
         width:wrap.scrollWidth, height:wrap.scrollHeight,
         windowWidth:wrap.scrollWidth, windowHeight:wrap.scrollHeight, logging:false
       });
-      // Restore
       wrap.querySelectorAll('td.tc, th.tc, th.tc-logo').forEach(el => el.style.position = '');
       wrap.querySelectorAll('.block-del, .block-resize').forEach(el => { el.style.display = el.dataset.od||''; delete el.dataset.od; });
       vBak.forEach(({lbl, par}) => { lbl.style.display = ''; const t = par.querySelector('._xvl'); if(t) t.remove(); });
       logoBak.forEach(({img, parent}) => { img.style.display = ''; const c = parent.querySelector('._xlogo'); if(c) c.remove(); });
       origParent.appendChild(wrap); wrap.setAttribute("style", origStyle); document.body.removeChild(offscreen);
-
       const A4W=3508, A4H=2480, PAD=80;
       const ratio = Math.min((A4W-PAD*2)/canvas.width, (A4H-PAD*2)/canvas.height);
       const dW=Math.round(canvas.width*ratio), dH=Math.round(canvas.height*ratio);
@@ -1705,16 +1671,37 @@ const Exporter = (() => {
   return { exportPDF };
 })();
 
-const Settings = (() => {
-  let _editUserId = null;
+// ═══════════════════════════════════════════════════════════
+// SETTINGS — roles managed via Firestore users/{uid}
+// ═══════════════════════════════════════════════════════════
 
-  function render() {
+const Settings = (() => {
+  let _editUserUid = null;
+  let _usersList = []; // cached list of Firestore users
+
+  async function _loadUsers() {
+    try {
+      const snap = await getDocs(collection(db, "users"));
+      _usersList = [];
+      snap.forEach(d => {
+        _usersList.push({ uid: d.id, ...d.data() });
+      });
+    } catch(e) {
+      console.error("Error loading users:", e);
+      _usersList = [];
+    }
+  }
+
+  async function render() {
     const el = document.getElementById("settings-content");
     if (!el) return;
     if (!Auth.isOwner()) {
       el.innerHTML = `<div style="padding:20px;color:#888;">Solo disponible para OWNER.</div>`;
       return;
     }
+    // Load users from Firestore
+    await _loadUsers();
+
     const s = State.get();
     const season = State.currentSeason();
 
@@ -1740,9 +1727,9 @@ const Settings = (() => {
     </div>
 
     <div class="settings-section">
-      <h3>Usuarios y PINs</h3>
+      <h3>Usuarios y roles</h3>
+      <p style="font-size:10px;color:#888;margin-bottom:8px;">Los usuarios se crean en la consola de Firebase. Aquí gestionas sus roles.</p>
       <div class="user-list" id="user-list"></div>
-      <button class="topbar-btn blue" style="margin-top:8px;" onclick="Settings.openNewUser()">＋ Usuario</button>
     </div>
 
     <div style="margin-top:16px;">
@@ -1753,7 +1740,7 @@ const Settings = (() => {
     renderSeasonList(s.seasons, s.currentSeasonId);
     renderGroupGrid(season);
     renderMemberList(season);
-    renderUserList(s.users);
+    renderUserList();
   }
 
   function renderSeasonList(seasons, currentId) {
@@ -1772,7 +1759,7 @@ const Settings = (() => {
   function renderGroupGrid(season) {
     const el = document.getElementById("group-grid");
     if (!el) return;
-    el.innerHTML = season.groups.map((g,i) => `
+    el.innerHTML = season.groups.map(g => `
       <div class="group-card">
         <input type="color" value="${g.color}" oninput="Settings.updateGroup('${g.id}','color',this.value)" style="width:32px;height:28px;padding:2px;border:1px solid #ccd;border-radius:3px;">
         <input type="text" value="${g.name}" oninput="Settings.updateGroup('${g.id}','name',this.value)" style="width:130px;font-size:11px;padding:3px 6px;border:1px solid #ccd;border-radius:3px;">
@@ -1785,13 +1772,13 @@ const Settings = (() => {
     const el = document.getElementById("member-list");
     if (!el) return;
     const sorted = Grid.sorted(season.members);
-    el.innerHTML = sorted.map((m,i) => `
+    el.innerHTML = sorted.map(m => `
       <div class="member-card" draggable="true" id="mcard-${m.id}"
         ondragstart="Settings.memberDragStart(event,'${m.id}')"
         ondragover="Settings.memberDragOver(event)"
         ondrop="Settings.memberDrop(event,'${m.id}')">
         <span class="drag-handle">⠿</span>
-        <input type="text" value="${m.initials}" oninput="Settings.updateMember('${m.id}','initials',this.value)" style="width:44px;font-size:11px;font-weight:700;padding:2px 5px;border:1px solid #ccd;border-radius:3px;" placeholder="Inic." title="Iniciales (aparecen en la tabla)">
+        <input type="text" value="${m.initials}" oninput="Settings.updateMember('${m.id}','initials',this.value)" style="width:44px;font-size:11px;font-weight:700;padding:2px 5px;border:1px solid #ccd;border-radius:3px;" placeholder="Inic.">
         <input type="text" value="${m.name}" oninput="Settings.updateMember('${m.id}','name',this.value)" style="width:100px;font-size:11px;padding:2px 5px;border:1px solid #ccd;border-radius:3px;">
         <select onchange="Settings.updateMember('${m.id}','group',this.value)" style="font-size:10px;padding:2px 5px;border:1px solid #ccd;border-radius:3px;">
           ${season.groups.map(g => `<option value="${g.id}"${m.group===g.id?" selected":""}>${g.name}</option>`).join("")}
@@ -1802,17 +1789,55 @@ const Settings = (() => {
     `).join("");
   }
 
-  function renderUserList(users) {
+  function renderUserList() {
     const el = document.getElementById("user-list");
     if (!el) return;
-    el.innerHTML = users.map(u => `
+    if (!_usersList.length) {
+      el.innerHTML = `<p style="font-size:11px;color:#aaa;">No hay usuarios registrados en Firestore.</p>`;
+      return;
+    }
+    el.innerHTML = _usersList.map(u => `
       <div class="user-card">
-        <strong>${u.name}</strong>
-        <span class="tag" style="background:${u.role==="OWNER"?"#c9a227":u.role==="EDITOR"?"#27ae60":"#888"};color:#fff;">${u.role}</span>
-        <button class="topbar-btn blue" style="padding:2px 8px;font-size:10px;margin-left:auto;" onclick="Settings.openEditUser('${u.id}')">Editar PIN</button>
-        <button class="topbar-btn red" style="padding:2px 6px;font-size:10px;" onclick="Settings.deleteUser('${u.id}')">×</button>
+        <strong style="font-size:11px;">${u.name || u.email || u.uid}</strong>
+        <span style="font-size:9px;color:#888;">${u.email || ""}</span>
+        <span class="tag" style="background:${u.role==="OWNER"?"#c9a227":"#27ae60"};color:#fff;">${u.role}</span>
+        <button class="topbar-btn blue" style="padding:2px 8px;font-size:10px;margin-left:auto;" onclick="Settings.openEditUserRole('${u.uid}')">Cambiar rol</button>
+        ${u.uid !== Auth.uid() ? `<button class="topbar-btn red" style="padding:2px 6px;font-size:10px;" onclick="Settings.removeUserDoc('${u.uid}')">× Quitar acceso</button>` : ""}
       </div>
     `).join("");
+  }
+
+  function openEditUserRole(uid) {
+    _editUserUid = uid;
+    const u = _usersList.find(x => x.uid === uid);
+    document.getElementById("modal-user-title").textContent = "Editar rol";
+    document.getElementById("modal-user-info").textContent = u ? (u.email || u.name || uid) : uid;
+    document.getElementById("modal-user-role").value = u?.role || "EDITOR";
+    Modal.open("modal-user");
+  }
+
+  async function saveUserRole() {
+    if (!_editUserUid) return;
+    const role = document.getElementById("modal-user-role").value;
+    try {
+      await updateDoc(doc(db, "users", _editUserUid), { role });
+      Modal.close("modal-user");
+      await render(); // refresh list
+    } catch(e) {
+      console.error("Error updating role:", e);
+      alert("Error al actualizar rol: " + e.message);
+    }
+  }
+
+  async function removeUserDoc(uid) {
+    if (!confirm("¿Quitar acceso a este usuario? (Se eliminará su documento de roles. La cuenta de Firebase Auth seguirá existiendo.)")) return;
+    try {
+      await deleteDoc(doc(db, "users", uid));
+      await render();
+    } catch(e) {
+      console.error("Error removing user doc:", e);
+      alert("Error: " + e.message);
+    }
   }
 
   // Member drag-to-reorder
@@ -1821,25 +1846,17 @@ const Settings = (() => {
   function memberDragOver(e)  { e.preventDefault(); }
   function memberDrop(e, targetId) {
     if (!_dragMemberId || _dragMemberId === targetId) return;
-    const season  = State.currentSeason();
+    const season = State.currentSeason();
     const members = season.members;
-    const dragM   = members.find(m => m.id === _dragMemberId);
+    const dragM = members.find(m => m.id === _dragMemberId);
     const targetM = members.find(m => m.id === targetId);
     if (!dragM || !targetM) return;
-
-    // Insert dragM BEFORE targetM by shifting orders
     const sorted_ = [...members].sort((a,b) => a.order - b.order);
     const fromIdx = sorted_.findIndex(m => m.id === dragM.id);
-    const toIdx   = sorted_.findIndex(m => m.id === targetM.id);
-
-    // Remove dragM from sorted list, insert before target
     sorted_.splice(fromIdx, 1);
     const insertAt = sorted_.findIndex(m => m.id === targetM.id);
     sorted_.splice(insertAt, 0, dragM);
-
-    // Reassign sequential orders
     sorted_.forEach((m, i) => { m.order = i; });
-
     _dragMemberId = null;
     renderMemberList(season);
   }
@@ -1848,7 +1865,6 @@ const Settings = (() => {
     const m = State.currentSeason().members.find(m => m.id === id);
     if (!m) return;
     m[field] = val;
-    // Re-render table so initials show immediately in header
     if (field === 'initials') {
       State.save();
       App.renderWeek();
@@ -1861,7 +1877,6 @@ const Settings = (() => {
     const g = season.groups.find(g => g.id === id);
     if (!g) return;
     g[field] = val;
-    // Re-render member tags so color/name updates show immediately
     renderMemberList(season);
     Grid.renderLegend("legend-tipo", season);
   }
@@ -1871,11 +1886,9 @@ const Settings = (() => {
     render();
   }
   function deleteGroup(id) {
-    const s = State.currentSeason();
-    s.groups = s.groups.filter(g => g.id !== id);
+    State.currentSeason().groups = State.currentSeason().groups.filter(g => g.id !== id);
     render();
   }
-
   function addMember() {
     const s = State.currentSeason();
     const maxOrder = s.members.reduce((mx,m) => Math.max(mx,m.order), -1);
@@ -1883,42 +1896,7 @@ const Settings = (() => {
     render();
   }
   function deleteMember(id) {
-    const s = State.currentSeason();
-    s.members = s.members.filter(m => m.id !== id);
-    render();
-  }
-
-  function openNewUser() { _editUserId=null; document.getElementById("modal-user-title").textContent="Nuevo usuario"; document.getElementById("modal-user-name").value=""; document.getElementById("modal-user-pin").value=""; Modal.open("modal-user"); }
-  function openEditUser(id) {
-    _editUserId = id;
-    const u = State.get().users.find(u=>u.id===id);
-    document.getElementById("modal-user-title").textContent="Editar usuario";
-    document.getElementById("modal-user-name").value = u?.name||"";
-    document.getElementById("modal-user-role").value = u?.role || "EDITOR";
-    document.getElementById("modal-user-pin").value = "";
-    Modal.open("modal-user");
-  }
-  function saveUser() {
-    const name = document.getElementById("modal-user-name").value.trim();
-    const role = document.getElementById("modal-user-role").value;
-    const pin  = document.getElementById("modal-user-pin").value;
-    if (!name) return;
-    const s = State.get();
-    if (_editUserId) {
-      const u = s.users.find(u=>u.id===_editUserId);
-      if (u) { u.name=name; u.role=role; if(pin) u.pinHash=State._hash(pin); }
-    } else {
-      if (!pin) return;
-      s.users.push({ id:State._uid(), name, role, pinHash:State._hash(pin) });
-    }
-    State.save();
-    Modal.close("modal-user");
-    render();
-  }
-  function deleteUser(id) {
-    const s = State.get();
-    if (s.users.length <= 1) { alert("Debe existir al menos 1 usuario."); return; }
-    s.users = s.users.filter(u => u.id !== id);
+    State.currentSeason().members = State.currentSeason().members.filter(m => m.id !== id);
     render();
   }
 
@@ -1936,13 +1914,12 @@ const Settings = (() => {
     Modal.close("modal-season");
     render();
     App.renderSeasonSelect();
+    State.save();
   }
 
   function deleteSeason(id) {
     const s = State.get();
     if (s.seasons.length <= 1) { alert("Debe existir al menos 1 temporada."); return; }
-    const season = State.currentSeason();
-    if (!season) return;
     s.seasons = s.seasons.filter(x => x.id !== id);
     if (s.currentSeasonId === id) s.currentSeasonId = s.seasons[0].id;
     State.save();
@@ -1951,7 +1928,7 @@ const Settings = (() => {
   }
 
   function save() {
-    State.save();
+    State.saveNow();
     App.renderWeek();
     App.renderTipo();
     Grid.renderLegend("legend-tipo", State.currentSeason());
@@ -1960,23 +1937,25 @@ const Settings = (() => {
 
   return { render, createSeason, deleteSeason, addGroup, deleteGroup, addMember, deleteMember,
            memberDragStart, memberDragOver, memberDrop, updateMember, updateGroup,
-           openNewUser, openEditUser, saveUser, deleteUser, save };
+           openEditUserRole, saveUserRole, removeUserDoc, save };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// APP
+// ═══════════════════════════════════════════════════════════
 
 const App = (() => {
   function init() {
     const s = State.get();
-    // Logo everywhere
-    document.querySelectorAll("img[data-rm-logo]").forEach(img => { img.src = LOGO; });
+    if (!s) return;
 
-    // Role badge
     const role = Auth.role();
     const badge = document.getElementById("role-badge");
     badge.textContent = role;
     badge.className = "role-badge " + role.toLowerCase();
-    // Weekend toggle
+
     document.getElementById("toggle-weekend").checked = s.showWeekend || false;
-    // Permissions
+
     if (!Auth.isOwner() && !Auth.isEditor()) {
       document.getElementById("tab-btn-settings").classList.add("disabled");
     }
@@ -1984,7 +1963,6 @@ const App = (() => {
     renderWeekSelect();
     renderWeek();
     Grid.renderLegend("legend-tipo", State.currentSeason());
-    // Update toolbar permissions
     _applyPermissions();
   }
 
@@ -1992,44 +1970,34 @@ const App = (() => {
     const owner = Auth.isOwner();
     const canE  = Auth.canEdit();
     const weekOk = Auth.editorCanEditCurrentWeek();
-
-    // Week buttons: OWNER always on, EDITOR only on current week
-    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week",].forEach(id => {
+    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week"].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       if (owner) { el.disabled = false; return; }
       el.disabled = !canE || !weekOk;
     });
-    // Tipo buttons: not week-dependent, just needs canEdit
     const _btnCT = document.getElementById("btn-clear-tipo");
     if (_btnCT) _btnCT.disabled = !canE;
     const _btnLV = document.getElementById("btn-fill-lv");
     if (_btnLV) _btnLV.disabled = !canE;
-    // New season button: OWNER only
     const _btnNS = document.getElementById("btn-new-season");
     if (_btnNS) _btnNS.style.display = owner ? "" : "none";
-    // Hide tabs: EDITOR only see Semana tab
-    document.getElementById("tab-btn-tipo").style.display     = (owner || Auth.isEditor()) ? "" : "none";
+    document.getElementById("tab-btn-tipo").style.display = (owner || Auth.isEditor()) ? "" : "none";
     document.getElementById("tab-btn-settings").style.display = (owner || Auth.isEditor()) ? "" : "none";
-    // Force to week tab if non-owner
     if (!owner && !Auth.isEditor()) showTab("week");
-    // Palette chips — only disable week panel chips (not tipo panel chips)
     document.querySelectorAll("#week-palette .chip").forEach(chip => {
       if (!canE || (!owner && !weekOk)) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
     });
-    // Tipo panel chips: only requires canEdit (OWNER always, EDITOR always for tipo)
     document.querySelectorAll("#tipo-palette .chip").forEach(chip => {
       if (!canE) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
     });
-    // Hide Tipo + Config tabs for non-owners
     const hideTabs = (!owner && !Auth.isEditor());
     const tipoBtn = document.getElementById("tab-btn-tipo");
     const cfgBtn  = document.getElementById("tab-btn-settings");
     if (tipoBtn) tipoBtn.style.display = hideTabs ? "none" : "";
     if (cfgBtn)  cfgBtn.style.display  = hideTabs ? "none" : "";
-    // Editor notice
     if (Auth.isEditor() && !weekOk) {
       document.getElementById("editor-limit-notice").style.display = "";
     }
@@ -2037,7 +2005,7 @@ const App = (() => {
 
   function selectSeason(id) {
     State.get().currentSeasonId = id;
-    State.get().currentWeekId   = null;
+    State.get().currentWeekId = null;
     State.save();
     renderSeasonSelect();
     renderWeekSelect();
@@ -2056,6 +2024,7 @@ const App = (() => {
 
   function renderSeasonSelect() {
     const s = State.get();
+    if (!s) return;
     const sel = document.getElementById("season-select");
     sel.innerHTML = s.seasons.map(x =>
       `<option value="${x.id}"${x.id===s.currentSeasonId?" selected":""}>${x.name}</option>`
@@ -2065,16 +2034,16 @@ const App = (() => {
   }
 
   function renderWeekSelect() {
-    const s      = State.get();
+    const s = State.get();
+    if (!s) return;
     const season = State.currentSeason();
-    const sel    = document.getElementById("week-select");
+    const sel = document.getElementById("week-select");
     if (!season || !season.weeks.length) {
       sel.innerHTML = `<option value="">Sin semanas</option>`; return;
     }
     sel.innerHTML = season.weeks.map(w =>
       `<option value="${w.id}"${w.id===s.currentWeekId?" selected":""}>${w.label}</option>`
     ).join("");
-    // Ensure currentWeekId is valid
     if (!s.currentWeekId) {
       s.currentWeekId = season.weeks[season.weeks.length-1].id;
       sel.value = s.currentWeekId;
@@ -2083,19 +2052,20 @@ const App = (() => {
 
   function renderWeek() {
     const season = State.currentSeason();
-    const week   = State.currentWeek();
+    if (!season) return;
+    const week = State.currentWeek();
     Grid.render("sched-wrap", season, week, false);
     _applyPermissions();
   }
 
   function renderTipo() {
     const season = State.currentSeason();
+    if (!season) return;
     Grid.render("tipo-wrap", season, null, true);
   }
 
   function showTab(name) {
     const owner = Auth.isOwner();
-    const isRestricted = !owner && !Auth.isEditor() || (!owner && name !== "week");
     if (name === "settings" && !owner && !Auth.isEditor()) return;
     if (name === "tipo" && !owner && !Auth.isEditor()) return;
     ["week","tipo","settings"].forEach(t => {
@@ -2103,50 +2073,28 @@ const App = (() => {
       document.getElementById("tab-btn-" + t).classList.toggle("active", t === name);
     });
     if (name === "settings") Settings.render();
-    if (name === "tipo")     renderTipo();
+    if (name === "tipo") renderTipo();
   }
 
   return { init, selectSeason, selectWeek, renderSeasonSelect, renderWeekSelect, renderWeek, renderTipo, showTab };
 })();
 
-window.addEventListener("DOMContentLoaded", () => {
-  State.load();
-  // Set logos immediately
-  document.querySelectorAll('img[src="./assets/rm.png"]').forEach(img => { img.src = LOGO; });
+// Expose to global for inline onclick handlers
+window.Auth = Auth;
+window.Modal = Modal;
+window.Grid = Grid;
+window.DragDrop = DragDrop;
+window.Resize = Resize;
+window.MoveBlock = MoveBlock;
+window.MoveEvent = MoveEvent;
+window.EventResize = EventResize;
+window.WeekMgr = WeekMgr;
+window.TipoMgr = TipoMgr;
+window.Exporter = Exporter;
+window.Settings = Settings;
+window.App = App;
+window.State = State;
 
-  // Restore session if exists
-  if (Auth.restore()) {
-    document.getElementById("auth-screen").style.display = "none";
-    document.getElementById("main-ui").style.display = "flex";
-    document.getElementById("main-tabs").style.display = "flex";
-    App.init();
-  }
-
-  // Weekend toggle state
-  const s = State.get();
-  if (s.showWeekend) document.getElementById("toggle-weekend").checked = true;
-});
-
-// Enter key on auth PIN
-document.getElementById("auth-pin")?.addEventListener("keydown", e => {
-  if (e.key === "Enter") Auth.login();
-});
 </script>
-
-<!-- Week template modal -->
-<div class="modal-overlay" id="modal-template">
-  <div class="modal">
-    <h3>Cargar plantilla de semana</h3>
-    <label>Selecciona plantilla</label>
-    <select id="modal-template-select" style="margin-bottom:10px;"></select>
-    <div style="font-size:11px;color:#888;margin-bottom:10px;">Los bloques se añadirán a la semana actual. Se preguntará si reemplazar o añadir.</div>
-    <div class="modal-actions">
-      <button class="modal-btn secondary" onclick="Modal.close('modal-template')">Cancelar</button>
-      <button class="modal-btn primary" onclick="WeekMgr.applyTemplate()">Cargar</button>
-    </div>
-  </div>
-</div>
-
-<div id="print-frame"></div>
 </body>
 </html>
