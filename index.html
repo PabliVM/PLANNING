@@ -145,7 +145,7 @@ th.tc-logo{
   padding:3px;border-right:2px solid var(--rm-blue-dark)!important;
 }
 th.tc-logo img{width:44px;height:44px;min-width:44px;min-height:44px;object-fit:contain;display:block;margin:0 auto;}
-td.sep,th.sep{width:var(--sep-w);min-width:var(--sep-w);max-width:var(--sep-w);background:var(--rm-blue)!important;border:none!important;padding:0;box-shadow:inset 0 0 0 10px var(--rm-blue);}
+td.sep,th.sep{width:2px;min-width:2px;max-width:2px;background:#d0d6e2!important;border:none!important;padding:0;}
 td.slot{
   width:var(--col-w);min-width:var(--col-w);max-width:var(--col-w);
   height:var(--row-h);background:#fff;position:relative;cursor:default;
@@ -2034,6 +2034,8 @@ const App = (() => {
     // Tipo and Settings tabs: OWNER only
     document.getElementById("tab-btn-tipo").style.display = owner ? "" : "none";
     document.getElementById("tab-btn-settings").style.display = owner ? "" : "none";
+    // Hide entire tab bar if only one tab visible (EDITOR)
+    document.getElementById("main-tabs").style.display = owner ? "flex" : "none";
 
     // Palette chips
     document.querySelectorAll("#week-palette .chip").forEach(chip => {
