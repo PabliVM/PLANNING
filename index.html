@@ -819,10 +819,30 @@ const Auth = (() => {
   }
 
   // Start listening for auth state
-  onAuthStateChanged(auth, (user) => _onUser(user));
+  // (window exposures are done below, after all modules are defined)
 
-  return { login, logout, role, uid, email, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, fetchRole };
+  return { login, logout, role, uid, email, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, fetchRole, _onUser };
 })();
+
+// ═══════════════════════════════════════════════════════════
+// Expose ALL modules to global scope IMMEDIATELY so inline
+// onclick handlers work. Must happen before onAuthStateChanged
+// fires (which is async and may arrive at any time).
+// ═══════════════════════════════════════════════════════════
+window.Auth = Auth;
+window.State = State;
+window.Modal = null; // placeholder, assigned after Modal is defined
+window.Grid = null;
+window.DragDrop = null;
+window.Resize = null;
+window.MoveBlock = null;
+window.MoveEvent = null;
+window.EventResize = null;
+window.WeekMgr = null;
+window.TipoMgr = null;
+window.Exporter = null;
+window.Settings = null;
+window.App = null;
 
 // Enter key on auth fields
 document.getElementById("auth-pass")?.addEventListener("keydown", e => {
@@ -1210,11 +1230,7 @@ const Grid = (() => {
     if (!el || !season) return;
     el.innerHTML = season.groups.map(g =>
       `<div class="leg-item"><div class="leg-sw" style="background:${g.color}"></div><span>${g.name}</span></div>`
-    ).join("") +
-    `<div class="leg-item"><div class="leg-sw" style="background:#888"></div><span>Ausente</span></div>
-     <div class="leg-item"><div class="leg-sw" style="background:#222"></div><span>Externo</span></div>
-     <div class="leg-item"><div class="leg-sw" style="background:#e74c3c"></div><span>Evento equipo</span></div>
-     <div class="leg-item"><div class="leg-sw" style="background:#9b59b6"></div><span>Evento miembro</span></div>`;
+    ).join("");
   }
 
   return { render, renderLegend, toggleWeekend, activeDayCount, cellX, cellY, sorted,
@@ -1567,6 +1583,7 @@ const WeekMgr = (() => {
 
 const TipoMgr = (() => {
   function clear() {
+    if (!confirm("¿Limpiar todos los bloques del horario tipo?")) return;
     const season = State.currentSeason();
     season.tipoBlocks = [];
     State.save();
@@ -2081,8 +2098,9 @@ const App = (() => {
   return { init, selectSeason, selectWeek, renderSeasonSelect, renderWeekSelect, renderWeek, renderTipo, showTab };
 })();
 
-// Expose to global for inline onclick handlers
-window.Auth = Auth;
+// ═══════════════════════════════════════════════════════════
+// Final window exposures (overwrite placeholders) + start auth listener
+// ═══════════════════════════════════════════════════════════
 window.Modal = Modal;
 window.Grid = Grid;
 window.DragDrop = DragDrop;
@@ -2095,7 +2113,9 @@ window.TipoMgr = TipoMgr;
 window.Exporter = Exporter;
 window.Settings = Settings;
 window.App = App;
-window.State = State;
+
+// NOW start the auth listener — all modules are ready
+onAuthStateChanged(auth, (user) => Auth._onUser(user));
 
 </script>
 </body>
