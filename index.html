@@ -2005,12 +2005,11 @@ const App = (() => {
     const week = State.currentWeek();
     const isLocked = week && week.locked;
 
-    // Week action buttons: OWNER always enabled, EDITOR disabled if locked
-    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week"].forEach(id => {
+    // Week action buttons: OWNER only
+    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week","btn-export"].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
-      if (owner) { el.disabled = false; return; }
-      el.disabled = !canE || !weekOk;
+      el.style.display = owner ? "" : "none";
     });
     const _btnCT = document.getElementById("btn-clear-tipo");
     if (_btnCT) _btnCT.disabled = !canE;
@@ -2035,7 +2034,6 @@ const App = (() => {
     // Tipo and Settings tabs: OWNER only
     document.getElementById("tab-btn-tipo").style.display = owner ? "" : "none";
     document.getElementById("tab-btn-settings").style.display = owner ? "" : "none";
-    if (!owner) showTab("week");
 
     // Palette chips
     document.querySelectorAll("#week-palette .chip").forEach(chip => {
