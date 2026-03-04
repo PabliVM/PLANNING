@@ -2001,9 +2001,10 @@ const App = (() => {
     if (_btnLV) _btnLV.disabled = !canE;
     const _btnNS = document.getElementById("btn-new-season");
     if (_btnNS) _btnNS.style.display = owner ? "" : "none";
-    document.getElementById("tab-btn-tipo").style.display = (owner || Auth.isEditor()) ? "" : "none";
-    document.getElementById("tab-btn-settings").style.display = (owner || Auth.isEditor()) ? "" : "none";
-    if (!owner && !Auth.isEditor()) showTab("week");
+    // Tipo and Settings tabs: OWNER only
+    document.getElementById("tab-btn-tipo").style.display = owner ? "" : "none";
+    document.getElementById("tab-btn-settings").style.display = owner ? "" : "none";
+    if (!owner) showTab("week");
     document.querySelectorAll("#week-palette .chip").forEach(chip => {
       if (!canE || (!owner && !weekOk)) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
@@ -2012,13 +2013,10 @@ const App = (() => {
       if (!canE) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
     });
-    const hideTabs = (!owner && !Auth.isEditor());
-    const tipoBtn = document.getElementById("tab-btn-tipo");
-    const cfgBtn  = document.getElementById("tab-btn-settings");
-    if (tipoBtn) tipoBtn.style.display = hideTabs ? "none" : "";
-    if (cfgBtn)  cfgBtn.style.display  = hideTabs ? "none" : "";
     if (Auth.isEditor() && !weekOk) {
       document.getElementById("editor-limit-notice").style.display = "";
+    } else {
+      document.getElementById("editor-limit-notice").style.display = "none";
     }
   }
 
@@ -2085,8 +2083,8 @@ const App = (() => {
 
   function showTab(name) {
     const owner = Auth.isOwner();
-    if (name === "settings" && !owner && !Auth.isEditor()) return;
-    if (name === "tipo" && !owner && !Auth.isEditor()) return;
+    if (name === "settings" && !owner) return;
+    if (name === "tipo" && !owner) return;
     ["week","tipo","settings"].forEach(t => {
       document.getElementById("panel-" + t).classList.toggle("active", t === name);
       document.getElementById("tab-btn-" + t).classList.toggle("active", t === name);
