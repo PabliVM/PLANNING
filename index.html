@@ -354,9 +354,11 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <button class="topbar-btn red" id="btn-del-week" onclick="WeekMgr.delete_()">× Eliminar</button>
     <div class="toolbar-sep"></div>
     <button class="topbar-btn green" id="btn-export" onclick="Exporter.exportPDF()">📷 Exportar PNG</button>
+    <div class="toolbar-sep"></div>
+    <button class="topbar-btn gold" id="btn-lock-week" onclick="WeekMgr.toggleLock()" style="display:none;">🔒 Bloquear</button>
     <div style="flex:1;"></div>
     <div id="editor-limit-notice" style="display:none;font-size:10px;color:#e74c3c;font-weight:700;padding:2px 8px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;">
-      ⚠ Solo puedes editar la semana actual
+      🔒 Semana bloqueada
     </div>
   </div>
   <div class="palette" id="week-palette">
@@ -805,11 +807,13 @@ const Auth = (() => {
   function isEditor() { return _role === "EDITOR"; }
   function canEdit()  { return _role === "OWNER" || _role === "EDITOR"; }
 
-  function editorCanEditCurrentWeek() {
+  // Can the current user edit the current week?
+  // OWNER can always edit. EDITOR can edit unless the week is locked.
+  function canEditCurrentWeek() {
     if (isOwner()) return true;
     const w = State.currentWeek();
     if (!w) return false;
-    return w.id === State.currentISOMonday();
+    return !w.locked;
   }
 
   function showErr(msg) {
@@ -821,7 +825,7 @@ const Auth = (() => {
   // Start listening for auth state
   // (window exposures are done below, after all modules are defined)
 
-  return { login, logout, role, uid, email, isOwner, isEditor, canEdit, editorCanEditCurrentWeek, fetchRole, _onUser };
+  return { login, logout, role, uid, email, isOwner, isEditor, canEdit, canEditCurrentWeek, fetchRole, _onUser };
 })();
 
 // ═══════════════════════════════════════════════════════════
@@ -1112,14 +1116,14 @@ const Grid = (() => {
     del.addEventListener("click", e => {
       e.stopPropagation();
       if (!Auth.canEdit()) return;
-      if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) return;
+      if (!Auth.canEditCurrentWeek()) return;
       deleteBlock(block.id, isTipo, week, season);
     });
     div.appendChild(del);
     div.addEventListener("mousedown", e => {
       if (rh.contains(e.target) || del.contains(e.target)) return;
       if (!Auth.canEdit()) return;
-      if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) return;
+      if (!Auth.canEditCurrentWeek()) return;
       MoveBlock.start(e, block, div, wrap, isTipo, week, season);
     });
     wrap.appendChild(div);
@@ -1266,7 +1270,7 @@ const DragDrop = (() => {
     const slotIdx  = parseInt(cell.dataset.s);
     const ctx      = cell.dataset.ctx || "week";
     if (!Auth.canEdit()) { _chipType = null; return; }
-    if (Auth.isEditor() && !Auth.editorCanEditCurrentWeek()) {
+    if (!Auth.canEditCurrentWeek()) {
       showEditorNotice(); _chipType = null; return;
     }
     const isTipo = ctx === "tipo";
@@ -1574,7 +1578,16 @@ const WeekMgr = (() => {
     Modal.close("modal-template");
     App.renderWeek();
   }
-  return { openNew, create, loadTipo, clear, delete_, saveAsTemplate, applyTemplate };
+  function toggleLock() {
+    const week = State.currentWeek();
+    if (!week) { alert("No hay semana seleccionada."); return; }
+    if (!Auth.isOwner()) return;
+    week.locked = !week.locked;
+    State.save();
+    App.renderWeek();
+  }
+
+  return { openNew, create, loadTipo, clear, delete_, saveAsTemplate, applyTemplate, toggleLock };
 })();
 
 // ═══════════════════════════════════════════════════════════
@@ -1988,7 +2001,11 @@ const App = (() => {
   function _applyPermissions() {
     const owner = Auth.isOwner();
     const canE  = Auth.canEdit();
-    const weekOk = Auth.editorCanEditCurrentWeek();
+    const weekOk = Auth.canEditCurrentWeek();
+    const week = State.currentWeek();
+    const isLocked = week && week.locked;
+
+    // Week action buttons: OWNER always enabled, EDITOR disabled if locked
     ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week"].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -2001,10 +2018,26 @@ const App = (() => {
     if (_btnLV) _btnLV.disabled = !canE;
     const _btnNS = document.getElementById("btn-new-season");
     if (_btnNS) _btnNS.style.display = owner ? "" : "none";
+
+    // Lock button: OWNER only
+    const lockBtn = document.getElementById("btn-lock-week");
+    if (lockBtn) {
+      lockBtn.style.display = owner ? "" : "none";
+      if (isLocked) {
+        lockBtn.textContent = "🔓 Desbloquear";
+        lockBtn.className = "topbar-btn green";
+      } else {
+        lockBtn.textContent = "🔒 Bloquear";
+        lockBtn.className = "topbar-btn gold";
+      }
+    }
+
     // Tipo and Settings tabs: OWNER only
     document.getElementById("tab-btn-tipo").style.display = owner ? "" : "none";
     document.getElementById("tab-btn-settings").style.display = owner ? "" : "none";
     if (!owner) showTab("week");
+
+    // Palette chips
     document.querySelectorAll("#week-palette .chip").forEach(chip => {
       if (!canE || (!owner && !weekOk)) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
@@ -2013,7 +2046,9 @@ const App = (() => {
       if (!canE) chip.classList.add("disabled");
       else chip.classList.remove("disabled");
     });
-    if (Auth.isEditor() && !weekOk) {
+
+    // Locked notice for EDITOR
+    if (!owner && isLocked) {
       document.getElementById("editor-limit-notice").style.display = "";
     } else {
       document.getElementById("editor-limit-notice").style.display = "none";
@@ -2059,7 +2094,7 @@ const App = (() => {
       sel.innerHTML = `<option value="">Sin semanas</option>`; return;
     }
     sel.innerHTML = season.weeks.map(w =>
-      `<option value="${w.id}"${w.id===s.currentWeekId?" selected":""}>${w.label}</option>`
+      `<option value="${w.id}"${w.id===s.currentWeekId?" selected":""}>${w.locked ? "🔒 " : ""}${w.label}</option>`
     ).join("");
     if (!s.currentWeekId) {
       s.currentWeekId = season.weeks[season.weeks.length-1].id;
