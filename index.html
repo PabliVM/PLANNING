@@ -199,7 +199,7 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
   pointer-events:all;
 }
 .event-label{
-  font-size:9px;font-weight:800;color:#1a2540;
+  font-size:16px;font-weight:800;color:#1a2540;
   padding:2px 4px;overflow:hidden;
   pointer-events:none;
   display:flex;align-items:center;justify-content:center;
@@ -2005,12 +2005,16 @@ const App = (() => {
     const week = State.currentWeek();
     const isLocked = week && week.locked;
 
-    // Week action buttons: OWNER only
-    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week","btn-export"].forEach(id => {
+    // Week action buttons: OWNER only (except export)
+    ["btn-new-week","btn-load-tipo","btn-clear-week","btn-del-week"].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
       el.style.display = owner ? "" : "none";
     });
+    // Export button: visible for OWNER and EDITOR
+    const _btnExport = document.getElementById("btn-export");
+    if (_btnExport) _btnExport.style.display = canE ? "" : "none";
+
     const _btnCT = document.getElementById("btn-clear-tipo");
     if (_btnCT) _btnCT.disabled = !canE;
     const _btnLV = document.getElementById("btn-fill-lv");
