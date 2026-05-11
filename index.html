@@ -111,7 +111,7 @@ body{display:flex;flex-direction:column;}
 .chip-external{background:#222;color:#fff;}
 .chip-event{background:#FFD966;color:#1a2540;}
 /* PATCH 1: Teletrabajo chip — azul claro pero distinguible del working */
-.chip-telework{background:#2D7DD2;color:#fff;}
+.chip-telework{background:#1A5FAB;color:#fff;}
 .chip.disabled{opacity:.35;cursor:not-allowed;}
 .readonly-notice{font-size:10px;color:#e74c3c;font-weight:700;padding:2px 8px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;}
 
@@ -1097,7 +1097,7 @@ const Grid = (() => {
     // PATCH 4: color para telework = #60A5FA
     let color = block.type === "working"
       ? groupColor(season, block.memberId)
-      : block.type === "telework" ? "#2D7DD2"
+      : block.type === "telework" ? "#1A5FAB"
       : (block.type === "absent" ? "#888" : "#222");
     const div = document.createElement("div");
     div.className = `sched-block block-${block.type}`;
