@@ -110,6 +110,8 @@ body{display:flex;flex-direction:column;}
 .chip-absent{background:#888;color:#fff;}
 .chip-external{background:#222;color:#fff;}
 .chip-event{background:#FFD966;color:#1a2540;}
+/* PATCH 1: Teletrabajo chip — azul claro pero distinguible del working */
+.chip-telework{background:#60A5FA;color:#1a2540;}
 .chip.disabled{opacity:.35;cursor:not-allowed;}
 .readonly-notice{font-size:10px;color:#e74c3c;font-weight:700;padding:2px 8px;background:#fff0f0;border-radius:4px;border:1px solid #f5c6c6;}
 
@@ -361,9 +363,11 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
       🔒 Semana bloqueada
     </div>
   </div>
+  <!-- PATCH 2: chip Teletrabajo añadido a paleta semana -->
   <div class="palette" id="week-palette">
     <span class="palette-label">Arrastrar sobre celda →</span>
     <div class="chip chip-working" draggable="true" data-type="working" ondragstart="DragDrop.paletteStart(event)">Trabajando</div>
+    <div class="chip chip-telework" draggable="true" data-type="telework" ondragstart="DragDrop.paletteStart(event)">Teletrabajo</div>
     <div class="chip chip-absent" draggable="true" data-type="absent" ondragstart="DragDrop.paletteStart(event)">Ausente</div>
     <div class="chip chip-external" draggable="true" data-type="external" ondragstart="DragDrop.paletteStart(event)">Trabajo externo</div>
     <div class="chip chip-event" draggable="true" data-type="event" ondragstart="DragDrop.paletteStart(event)">Evento</div>
@@ -381,9 +385,11 @@ td.slot.drag-over{background:rgba(0,71,149,.15)!important;outline:2px dashed var
     <div style="flex:1;"></div>
     <button class="topbar-btn red" id="btn-clear-tipo" onclick="TipoMgr.clear()">🗑 Limpiar tipo</button>
   </div>
+  <!-- PATCH 3: chip Teletrabajo añadido a paleta tipo -->
   <div class="palette" id="tipo-palette">
     <span class="palette-label">Arrastrar →</span>
     <div class="chip chip-working" draggable="true" data-type="working" data-context="tipo" ondragstart="DragDrop.paletteStart(event)">Trabajando</div>
+    <div class="chip chip-telework" draggable="true" data-type="telework" data-context="tipo" ondragstart="DragDrop.paletteStart(event)">Teletrabajo</div>
     <div class="chip chip-absent" draggable="true" data-type="absent" data-context="tipo" ondragstart="DragDrop.paletteStart(event)">Ausente</div>
     <div class="chip chip-external" draggable="true" data-type="external" data-context="tipo" ondragstart="DragDrop.paletteStart(event)">Trabajo externo</div>
   </div>
@@ -1088,8 +1094,10 @@ const Grid = (() => {
     const y = cellY(wrap, season, block.fromSlot, isTipo);
     const w = (()=>{ const mt = _measure(wrap, season, isTipo); return mt ? mt.cellW : (COL_W - 2); })();
     const h = (()=>{ const mt = _measure(wrap, season, isTipo); const py = mt ? mt.pitchY : ROW_H; return (block.toSlot - block.fromSlot) * py; })();
+    // PATCH 4: color para telework = #60A5FA
     let color = block.type === "working"
       ? groupColor(season, block.memberId)
+      : block.type === "telework" ? "#60A5FA"
       : (block.type === "absent" ? "#888" : "#222");
     const div = document.createElement("div");
     div.className = `sched-block block-${block.type}`;
@@ -1099,7 +1107,7 @@ const Grid = (() => {
     div.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${color};`;
     const inner = document.createElement("div");
     inner.className = "block-inner";
-    if (block.type !== "working" && block.label) {
+    if (block.type !== "working" && block.type !== "telework" && block.label) {
       const lbl = document.createElement("div");
       lbl.className = "block-label";
       lbl.textContent = block.label;
@@ -1285,7 +1293,8 @@ const DragDrop = (() => {
       isTeam: type === "event"
     };
     _chipType = null;
-    if (type === "working") {
+    // PATCH 5: telework no abre modal, rellena directo como working
+    if (type === "working" || type === "telework") {
       finalize(pending, "", null);
     } else {
       Modal.openBlock(pending);
@@ -1783,7 +1792,7 @@ const Settings = (() => {
         <strong>${s.name}</strong>
         <span style="color:#888;font-size:10px;">${s.startYear}</span>
         ${s.id === currentId ? `<span class="tag" style="background:#e8f0ff;color:var(--rm-blue);">activa</span>` : `<button class="topbar-btn blue" style="padding:2px 8px;font-size:10px;" onclick="App.selectSeason('${s.id}')">Activar</button>`}
-        <button class="topbar-btn red" style="padding:2px 8px;font-size:10px;" onclick="Settings.deleteSeason('${s.id}')">×</button>
+        <button class="topbar-btn red" style="padding:2px 6px;font-size:10px;" onclick="Settings.deleteSeason('${s.id}')">×</button>
       </div>
     `).join("");
   }
